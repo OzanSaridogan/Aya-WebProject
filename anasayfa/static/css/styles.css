@@ -1,3 +1,79 @@
+/* Responsive adjustments for mobile */
+@media (max-width: 900px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 20px;
+  }
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .logo {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+  }
+  .login-btn {
+    margin-top: 10px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-section {
+    height: 60vh;
+    min-height: 350px;
+    padding: 0;
+  }
+  .hero-text {
+    position: static;
+    padding: 20px 10px 0 10px;
+    max-width: 100%;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+  }
+  .hero-text h1 {
+    font-size: 32px;
+  }
+  .hero-text p {
+    font-size: 15px;
+  }
+  .about-section .container,
+  .hakkında .container {
+    margin-left: 0;
+    padding: 0 10px;
+  }
+  .hakkında {
+    padding: 20px 5px;
+  }
+  .hakkında h2 {
+    font-size: 24px;
+  }
+  .hakkında p {
+    font-size: 15px;
+  }
+  .photo-slider h2 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .slider img {
+    width: 90vw;
+    max-width: 320px;
+    height: 140px;
+  }
+  .iletisim-content {
+    margin-left: 0;
+    padding: 0 10px;
+  }
+  .iletisim {
+    padding: 30px 5px;
+  }
+}
 /* Reset ve temel ayarlar */
 * {
   margin: 0;
@@ -113,7 +189,7 @@ body {
 
 .photo-slider h2 {
   font-size: 28px;
-  text-align: left
+  text-align: left;
   margin-bottom: 30px;
 }
 
