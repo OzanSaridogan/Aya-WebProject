@@ -1,0 +1,280 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+}
+
+/* Header */
+header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+    background-color: #ffffff;
+}
+
+.logo {
+    
+    width: 90px;   /* Adjust width as needed */
+    height: auto;   /* Keeps aspect ratio */
+    display: block; /* Optional: for better alignment */
+}
+
+
+/* Navigation */
+nav ul.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;           /* Removes underline */
+  color: #c2b8b2;                  /* Dark blue text */
+  font-weight: bold;               /* Bold text */
+  font-size: 16px;                 /* Font size */
+  padding: 10px 15px;              /* Adds space inside links */
+  border-radius: 6px;              /* Rounded corners */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: #c2b8b2;       /* Background when hovered */
+  color: white;                    /* Text color when hovered */
+}
+
+.nav-links a.active {
+  background-color: #e6f0ff;       /* Light blue background for active link */
+  color: #004080;
+}
+.nav-links a.active:hover {
+  background-color: #c2b8b2;       /* Dark blue background on hover for active link */
+  color: white;                    /* Text color on hover for active link */
+}
+
+/* Login Button */
+.login-btn {
+    padding: 8px 16px;
+    background-color: #c2b8b2;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Main Section */
+main {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+main h1 {
+    font-size: 28px;
+    color: #111;
+    margin-bottom: 20px;
+}
+
+.hero-image img {
+    max-width: 50%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.announcement-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+}
+
+.announcement-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.announcement-card h2 {
+  color: #222;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.announcement-card p {
+  color: #444;
+  font-size: 16px;
+}
+
+.announcement-image img {
+  margin-top: 10px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.contact{
+  position: relative;
+  min-height: 100vh;
+  padding: 50px 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: url('../images/ayas_manzara.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.contact .content{
+  max-width: 800px;
+  text-align: center;
+}
+
+.contact .content h2{
+  font-size: 36px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.contact .content p{
+  
+  font-weight: 300;
+  color: #fff;
+  
+}
+
+.container { 
+  width: 100%;
+  display: flex;
+  flex-direction: row;  /* 👈 Changed from column to row */
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px; /* Optional spacing between info and form */
+  margin-top: 30px;
+  flex-wrap: wrap; /* 👈 helps for responsiveness */
+}
+
+
+.contact .ContactInfo {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact .ContactInfo .box {
+  position: relative;
+  display: flex;
+  padding: 20px 0;
+}
+
+.container .ContactInfo .box .icon {
+  min-width: 60px;
+  height: 60px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 22px;
+}
+
+.contact .ContactInfo .box .text {
+  display: flex;
+  margin-left: 20px;
+  font-size: 16px;
+  color: #fff;
+  flex-direction: column;
+  font-weight: 300;
+}
+
+.contact .ContactInfo .box .text h3 {
+  font-weight: 500;
+  font-size: 20px;
+  color: #ffffff;
+  margin-bottom: 5px;
+}
+
+.contactForm {
+  width: 45%;  /* Slightly less than 50% to create space */
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contactForm h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: 500;
+}
+
+.contactForm .inputBox {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.contactForm .inputBox input,
+.contactForm .inputBox textarea {
+  width: 100%;
+  padding: 5px 0;
+  margin: 10px 0;
+  border: none;
+  border-bottom: 2px solid #333;
+  outline: none;
+  resize: none;
+  font-size: 16px;
+  color: #333;
+}
+
+
+
+.contactForm .inputBox input[type="submit"] {
+  width: 100px;
+  background: #00bcd4;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 4px;
+}
+
+@media (max-width: 991px){
+  .contact {
+    padding: 50px;
+  }
+  .container {
+    flex-direction: column;
+    width: 100%;
+    padding: 0 20px;
+    gap: 0;
+  }
+  .container .ContactInfo, .contactForm {
+    margin-bottom: 40px;
+    width: 100%;
+  }
+}
+
+.descriptions {
+    font-size: 20px;
+    color: #333;
+    margin-top: 20px;
+    line-height: 1.6;
+}

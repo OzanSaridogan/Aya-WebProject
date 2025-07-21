@@ -1,0 +1,169 @@
+/* Reset ve temel ayarlar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Spartan", sans-serif;
+  color: white;
+}
+
+/* Arka planlı hero bölümü */
+.hero-section {
+  
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  position: relative;
+}
+
+/* Navigasyon */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background-color: transparent /* şeffaf arka plan */
+}
+
+.logo {
+  width: 80px;       /* Genişlik */
+  height: 80px;      /* Yükseklik (eşit olmalı) */
+  border-radius: 50%; /* Bu satır logoyu daire yapar */
+  object-fit: cover;  /* Taşma varsa logoyu orantılı kırpar */
+}
+
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.login-btn {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Hero yazısı */
+.hero-text {
+  position: absolute;
+  bottom: 80px;
+  left: 60px;
+  max-width: 600px;
+  color: white;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+}
+
+.hero-text h1 {
+  font-size: 48px;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+
+.hero-text p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.hakkında {
+  background-color: white;
+  color: #222;
+  padding: 30px;
+  
+}
+
+.about-section .container {
+  max-width: 1000px;
+  margin-left: 60px;   /* sola yaklaşır */
+  margin-right: auto;
+}
+
+
+.hakkında h2 {
+  font-size: 36px;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.hakkında p {
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.photo-slider {
+  background-color: #EAE8E8;
+  padding: 60px 20px;
+  align-items: center;
+}
+
+.photo-slider h2 {
+  font-size: 28px;
+  text-align: left
+  margin-bottom: 30px;
+}
+
+.slider-container {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.slider {
+  display: flex;
+  gap: 20px;
+  padding: 10px 20px;
+  width: max-content;
+}
+
+.slider img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.slider img:hover {
+  transform: scale(1.03);
+}
+
+
+.iletisim {
+  background-color: #1c1c1c; /* koyu gri / siyah arka plan */
+  color: white;
+  padding: 60px 20px;
+}
+
+.iletisim-content {
+  max-width: 600px;
+  margin-left: 60px;
+}
+
+.iletisim-content h2 {
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.iletisim-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}

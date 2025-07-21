@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayaş Derneği</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+</head>
+<body>
+    {% load static %}
+
+<header>
+  <div class="nav-container">
+    <img src="{% static 'images/dernek_logo.jpg' %}" alt="Ayaş Derneği Logo" class="logo">
+    <nav>
+      <ul class="nav-links">
+        <li><a href="{% url 'anasayfa' %}">AnaSayfa</a></li>
+        <li><a href="{% url 'etkinlik' %}">Etkinlikler</a></li>
+        <li><a href="{% url 'duyurular' %}">Duyurular</a></li>
+        <li><a href="{% url 'ayas' %}">Ayaş</a></li>
+        <li><a href="{% url 'faydali_bilgiler' %}">Faydalı Bilgiler</a></li>
+        <li><a href="{% url 'galeri' %}">Galeri</a></li>
+        <li><a href="{% url 'iletisim' %}">İletişim</a></li>
+      </ul>
+    </nav>
+    <button class="login-btn">Giriş Yap</button>
+    <script src="{% static 'js/login.js' %}"></script>
+  </div>
+</header>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginBtn = document.querySelector('.login-btn');
+            loginBtn.addEventListener('click', function () {
+                window.location.href = "{% url 'login' %}";
+            });
+        });
+    </script>
+
+    <main>
+        <h1>Ayaş Derneği Web Sitesine Hoşgeldiniz</h1>
+        <p class="descriptions">Ayaş Derneği, sosyal yardımlaşma ve dayanışma amacıyla kurulmuş bir sivil toplum kuruluşudur. Derneğimiz, üyeleri ve gönüllüleri ile birlikte çeşitli sosyal projeler yürütmekte, toplumsal sorunlara duyarlılık göstermekte ve bu konularda farkındalık yaratmaya çalışmaktadır.</p>
+
+        <div class="hero-image">
+            <img src="{% static 'images/ayas_manzara.jpg' %}" alt="Ayaş Panoramik Görüntü">
+        </div>
+
+    </main>
+</body>
+</html>

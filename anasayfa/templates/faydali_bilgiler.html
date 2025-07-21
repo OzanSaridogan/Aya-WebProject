@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faydalı Bilgiler</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/faydali_bilgiler.css' %}" />
+</head>
+
+<body>
+
+  <!-- Sayfa Başlığı Arka Planlı -->
+  <section class="bilgiler-banner">
+    <h1>Faydalı Bilgiler</h1>
+  </section>
+
+  <!-- Bilgi Kartları -->
+  <section class="bilgiler-listesi">
+    {% for bilgi in faydali_bilgiler %}
+      <div class="bilgi-karti">
+        <div class="bilgi-metni">
+          <h2>{{ bilgi.baslik }}</h2>
+          <p>{{ bilgi.aciklama }}</p>
+        </div>
+        {% if bilgi.resim %}
+          <div class="bilgi-resmi">
+            <img src="{{ bilgi.resim.url }}" alt="{{ bilgi.baslik }}">
+          </div>
+        {% endif %}
+      </div>
+    {% empty %}
+      <p>Henüz bilgi eklenmemiş.</p>
+    {% endfor %}
+  </section>
+
+</body>
+</html>

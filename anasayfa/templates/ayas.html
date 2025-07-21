@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/ayas.css' %}">
+{% endblock %}
+{% block content %}
+  <h2>Ayaş Hakkında Genel Bilgi</h2>
+  <div class="ayas-bilgiler-listesi">
+    {% for bilgi in ayas_bilgiler %}
+      <div class="ayas-bilgi-karti">
+        <div class="ayas-bilgi-metni">
+          <h2>{{ bilgi.baslik }}</h2>
+          <p>{{ bilgi.aciklama }}</p>
+          <small>{{ bilgi.tarih }}</small>
+        </div>
+        {% if bilgi.resim %}
+          <div class="ayas-bilgi-resmi">
+            <img src="{{ bilgi.resim.url }}" alt="{{ bilgi.baslik }}">
+          </div>
+        {% endif %}
+      </div>
+    {% empty %}
+      <p>Henüz bilgi eklenmemiş.</p>
+    {% endfor %}
+  </div>
+{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayaş - Ayaş Derneği</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  {% include "partials/navbar.html" %}
+  <main>
+    <h1>Ayaş Hakkında</h1>
+    <p>Ayaş, Ankara iline bağlı tarihi ve doğal güzellikleriyle ön plana çıkan bir ilçedir. Tarihi Roma dönemine kadar uzanır. Termal kaynakları, dut bahçeleri ve geleneksel konakları ile bilinir.</p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,63 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fdfdfd;
+}
+
+.etkinlikler-banner {
+  background-image: url('/static/images/arkaplan2.jpg'); /* arkaplan2.jpg varsa */
+  background-size: cover;
+  background-position: center;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.etkinlikler-banner h1 {
+  color: white;
+  font-size: 36px;
+  
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+.etkinlikler-listesi {
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.etkinlik-karti {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  gap: 30px;
+}
+
+.etkinlik-metni {
+  flex: 1;
+}
+
+.etkinlik-metni h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.etkinlik-metni p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.etkinlik-resmi img {
+  width: 250px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+}

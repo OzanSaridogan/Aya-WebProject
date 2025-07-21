@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Etkinliklerimiz</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/duyurular.css' %}" />
+</head>
+
+<body>
+
+  <!-- Sayfa Başlığı Arka Planlı -->
+  <section class="etkinlikler-banner">
+    <h1>Duyurular</h1>
+  </section>
+
+  <!-- Etkinlik Kartları -->
+  <section class="duyuru-listesi">
+    {% for duyuru in duyurular %}
+      <div class="duyuru-karti">
+        <div class="duyuru-metni">
+          <h2>{{ duyuru.baslik }}</h2>
+          <p>{{ duyuru.aciklama }}</p>
+        </div>
+        {% if duyuru.resim %}
+          <div class="duyuru-resmi">
+            <img src="{{ duyuru.resim.url }}" alt="{{ duyuru.baslik }}">
+          </div>
+        {% endif %}
+      </div>
+    {% empty %}
+      <p>Henüz duyuru eklenmemiş.</p>
+    {% endfor %}
+  </section>
+
+</body>
+</html>

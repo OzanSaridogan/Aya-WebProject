@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+    <section class="contact">
+        <div class="content">
+            <h2>İletişim</h2>
+            <p>Herhangi bir sorunuz varsa veya daha fazla bilgiye ihtiyacınız varsa, lütfen bizimle aşağıdaki kanallar aracılığıyla iletişime geçin:</p>
+        </div>
+
+        <div class="container">
+            <div class="ContactInfo">
+                <div class="box">
+                    <div class="icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="text">
+                        <h3>Adres</h3>
+                        <p>Menekşe 2 sokak 18/10 Kızılay Ankara, Turkey</p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="text">
+                        <h3>Email</h3>
+                        <p>info@example.com</p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="text">
+                        <h3>Telefon</h3>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ✅ Contact Form is now a sibling, not inside ContactInfo -->
+            <div class="contactForm">
+                <form>
+                    <h2>Mesaj Gönder</h2>
+                    <div class="inputBox">
+                        <label for="name">Ad Soyad</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="inputBox">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="inputBox">
+                        <label for="message">Mesajınızı buraya yazın</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+
+                    <div class="inputBox">
+                        <input type="submit" value="Gönder">
+                    </div>
+                </form> 
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

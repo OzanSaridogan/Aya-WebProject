@@ -1,0 +1,46 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fdfdfd;
+}
+
+.ayas-bilgiler-listesi {
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.ayas-bilgi-karti {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  gap: 30px;
+}
+
+.ayas-bilgi-metni {
+  flex: 1;
+}
+
+.ayas-bilgi-metni h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.ayas-bilgi-metni p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.ayas-bilgi-resmi img {
+  width: 250px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Etkinliklerimiz</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/etkinlikler.css' %}" />
+</head>
+
+<body>
+
+  <!-- Sayfa Başlığı Arka Planlı -->
+  <section class="etkinlikler-banner">
+    <h1>Etkinliklerimiz</h1>
+  </section>
+
+  <!-- Etkinlik Kartları -->
+  <section class="etkinlikler-listesi">
+    {% for etkinlik in etkinlikler %}
+      <div class="etkinlik-karti">
+        <div class="etkinlik-metni">
+          <h2>{{ etkinlik.baslik }}</h2>
+          <p>{{ etkinlik.aciklama }}</p>
+        </div>
+        {% if etkinlik.resim %}
+          <div class="etkinlik-resmi">
+            <img src="{{ etkinlik.resim.url }}" alt="{{ etkinlik.baslik }}">
+          </div>
+        {% endif %}
+      </div>
+    {% empty %}
+      <p>Henüz etkinlik eklenmemiş.</p>
+    {% endfor %}
+  </section>
+
+</body>
+</html>
