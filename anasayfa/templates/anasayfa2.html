@@ -24,7 +24,7 @@
           alt="logo"
           class="logo"
         />
-        <ul class="nav-links">
+        <ul class="nav-links" id="navLinks">
           <li><a href="{% url 'anasayfa' %}">AnaSayfa</a></li>
           <li><a href="{% url 'etkinlik' %}">Etkinlikler</a></li>
           <li><a href="{% url 'duyurular' %}">Duyurular</a></li>
@@ -32,18 +32,11 @@
           <li><a href="{% url 'faydali_bilgiler' %}">Faydalı Bilgiler</a></li>
           <li><a href="{% url 'iletisim' %}">İletişim</a></li>
         </ul>
-        <button class="login-btn">Giriş Yap</button>
-        <script src="{% static 'js/login.js' %}"></script>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+          ☰
+        </button>
+        <button class="login-btn" id="loginBtn">Giriş Yap</button>
       </nav>
-
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const loginBtn = document.querySelector(".login-btn");
-          loginBtn.addEventListener("click", function () {
-            window.location.href = "{% url 'login' %}";
-          });
-        });
-      </script>
 
       <div class="hero-text">
         <h1>MİSYONUMUZ</h1>
@@ -66,11 +59,11 @@
           kuruluşudur. Derneğimiz; sosyal dayanışmayı güçlendirmek, kültürel
           etkinlikler düzenlemek, eğitim ve bilinçlendirme faaliyetleri yürütmek
           gibi birçok alanda faaliyet göstermektedir. Ayaşlılar arasında birlik
-          ve beraberliği artırmak, memleket sevgisini pekiştirmek ve Ayaş’ın
+          ve beraberliği artırmak, memleket sevgisini pekiştirmek ve Ayaş'ın
           tarihî değerlerini daha geniş kitlelere tanıtmak temel
           hedeflerimizdendir. Bugüne kadar birçok etkinlik, gezi, söyleşi ve
           yardım kampanyası düzenleyerek hemşehrilerimizle gönül bağı kurduk.
-          Gelecekte de aynı inanç ve azimle çalışmalarımıza devam ederek Ayaş’ın
+          Gelecekte de aynı inanç ve azimle çalışmalarımıza devam ederek Ayaş'ın
           adını her platformda yaşatmayı sürdüreceğiz. Bizimle birlikte bu
           kültürel yolculukta yer almak isteyen herkesi derneğimize destek
           vermeye ve çalışmalarımıza katılmaya davet ediyoruz.
@@ -85,7 +78,6 @@
           <img src="{% static 'images/etkinlik.jpg' %}" alt="Fotoğraf 1" />
           <img src="{% static 'images/gezi.jpg' %}" alt="Fotoğraf 2" />
           <img src="{% static 'images/toplantı.jpg' %}" alt="Fotoğraf 3" />
-         
           <!-- İstediğin kadar çoğaltabilirsin -->
         </div>
       </div>
@@ -94,13 +86,51 @@
     <section class="iletisim">
       <div class="iletisim-content">
         <h2>İletişim</h2>
-        <p>ozansardogan379@gmail.com</p>
-        <p>+90 555 123 4567</p>
-
-        <p></p>
-
-        <p>Menekşe 2 Sokak No:18/10 Kızılay, Ankara, Türkiye</p>
+        <p>📧 ozansardogan379@gmail.com</p>
+        <p>📞 +90 555 123 4567</p>
+        <p>📍 Menekşe 2 Sokak No:18/10 Kızılay, Ankara, Türkiye</p>
       </div>
     </section>
+
+    <script>
+      // Mobile menu toggle functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+        const navLinks = document.getElementById("navLinks");
+        const loginBtn = document.getElementById("loginBtn");
+
+        // Toggle mobile menu
+        mobileMenuToggle.addEventListener("click", function () {
+          navLinks.classList.toggle("active");
+          // Change hamburger to X when menu is open
+          if (navLinks.classList.contains("active")) {
+            mobileMenuToggle.innerHTML = "✕";
+          } else {
+            mobileMenuToggle.innerHTML = "☰";
+          }
+        });
+
+        // Close menu when clicking on a navigation link
+        navLinks.addEventListener("click", function (e) {
+          if (e.target.tagName === "A") {
+            navLinks.classList.remove("active");
+            mobileMenuToggle.innerHTML = "☰";
+          }
+        });
+
+        // Close menu when clicking outside of menu area
+        document.addEventListener("click", function (e) {
+          if (!mobileMenuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+            navLinks.classList.remove("active");
+            mobileMenuToggle.innerHTML = "☰";
+          }
+        });
+
+        // Login button functionality
+        loginBtn.addEventListener("click", function () {
+          window.location.href = "{% url 'login' %}";
+        });
+      });
+    </script>
   </body>
 </html>
