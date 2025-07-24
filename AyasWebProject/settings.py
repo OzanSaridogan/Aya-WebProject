@@ -83,6 +83,14 @@ DATABASES = {
 }
 
 
+# Django admin panelini web üzerinde kullanabilmek için gerekli ayarlar
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://ayaswebproject-test.onrender.com",
+]
+
+
+
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
