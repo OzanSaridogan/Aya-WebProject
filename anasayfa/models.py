@@ -1,6 +1,15 @@
 
 from django.db import models
 
+class ContactMessage(models.Model):
+    name = models.CharField("Ad Soyad", max_length=100)
+    email = models.EmailField("E-posta")
+    message = models.TextField("Mesaj")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.email}"
+
 class AyasBilgi(models.Model):
     baslik = models.CharField("Başlık", max_length=200)
     aciklama = models.TextField("Açıklama")

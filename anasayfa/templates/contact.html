@@ -51,7 +51,8 @@
 
             <!-- ✅ Contact Form is now a sibling, not inside ContactInfo -->
             <div class="contactForm">
-                <form>
+                <form method="post">
+                    {% csrf_token %}
                     <h2>Mesaj Gönder</h2>
                     <div class="inputBox">
                         <label for="name">Ad Soyad</label>
@@ -71,7 +72,14 @@
                     <div class="inputBox">
                         <input type="submit" value="Gönder">
                     </div>
-                </form> 
+                    {% if success %}
+                    <div style="color: green; margin-top: 20px; font-weight: bold;">Mesajınız başarıyla gönderildi!</div>
+                    {% endif %}
+                </form>
+                <!-- Go to Home Page Button (inside contactForm, below form) -->
+                <div>
+                    <a href="/" class="btn-home" style="display: inline-block; padding: 10px 24px; background: #007bff; color: #fff; border-radius: 5px; text-decoration: none; font-weight: bold;">Ana Sayfaya Dön</a>
+                </div>
             </div>
         </div>
     </section>

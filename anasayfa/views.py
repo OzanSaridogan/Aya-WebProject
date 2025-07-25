@@ -31,18 +31,24 @@ def iletisim(request):
     return render(request, 'contact.html')
 
 def contact(request):
+    from django.core.mail import send_mail
+    success = False
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
         message = request.POST.get('message')
-        
-        # Burada mesajı işleyebilir veya veritabanına kaydedebilirsiniz
-        # Örneğin, print ile konsola yazdırabilirsiniz
-        print(f"Name: {name}, Email: {email}, Message: {message}")
-        
-        return HttpResponse("Mesajınız alındı!")
-    
-    return render(request, 'contact.html')
+        if name and email and message:
+            subject = f'Yeni İletişim Mesajı: {name}'
+            body = f'Gönderen: {name} <{email}>\n\nMesaj:\n{message}'
+            send_mail(
+                subject,
+                body,
+                'ozansari9@gmail.com',  # Change this to your sender email if needed
+                ['ozansardogan379@gmail.com'],
+                fail_silently=False,
+            )
+            success = True
+    return render(request, 'contact.html', {'success': success})
 
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect

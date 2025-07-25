@@ -5,32 +5,332 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Faydalı Bilgiler</title>
   {% load static %}
-  <link rel="stylesheet" href="{% static 'css/faydali_bilgiler.css' %}" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+    }
+
+    /* Navigation */
+    .navigation {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+    }
+
+    .nav-home {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-weight: 500;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-home:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .nav-home svg {
+      flex-shrink: 0;
+    }
+
+    /* Modern Header with Gradient */
+    .bilgiler-banner {
+      background: linear-gradient(135deg, #374270 0%, #74bdde 100%);
+      position: relative;
+      padding: 80px 20px 60px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .bilgiler-banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="15" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="70" cy="45" r="1" fill="white" opacity="0.08"/><circle cx="30" cy="75" r="1" fill="white" opacity="0.12"/><circle cx="85" cy="85" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      pointer-events: none;
+    }
+
+    .bilgiler-banner h1 {
+      color: white;
+      font-size: clamp(28px, 6vw, 48px);
+      font-weight: 700;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 1;
+      margin-bottom: 10px;
+    }
+
+    .banner-subtitle {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: clamp(14px, 3vw, 18px);
+      font-weight: 400;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Decorative elements */
+    .banner-decoration {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      top: 20px;
+      right: 20px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .banner-decoration::after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Information List Section */
+    .bilgiler-listesi {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .bilgi-karti {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bilgi-karti::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(135deg, #374270 0%, #74bdde 100%);
+    }
+
+    .bilgi-karti:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .bilgi-content {
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+    }
+
+    .bilgi-metni {
+      flex: 1;
+    }
+
+    .bilgi-metni h2 {
+      font-size: clamp(20px, 4vw, 26px);
+      font-weight: 600;
+      color: #2d3748;
+      margin-bottom: 15px;
+      line-height: 1.3;
+    }
+
+    .bilgi-metni p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #4a5568;
+      text-align: justify;
+    }
+
+    .bilgi-resmi {
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .bilgi-resmi img {
+      width: 280px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .bilgi-karti:hover .bilgi-resmi img {
+      transform: scale(1.02);
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 80px 20px;
+      color: #718096;
+    }
+
+    .empty-state h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #4a5568;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .bilgiler-banner {
+        padding: 60px 20px 40px;
+      }
+
+      .banner-decoration {
+        width: 80px;
+        height: 80px;
+        top: 15px;
+        right: 15px;
+      }
+
+      .banner-decoration::after {
+        width: 40px;
+        height: 40px;
+      }
+
+      .bilgiler-listesi {
+        padding: 40px 15px;
+        gap: 25px;
+      }
+
+      .bilgi-karti {
+        padding: 25px 20px;
+      }
+
+      .bilgi-content {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .bilgi-resmi {
+        align-self: center;
+      }
+
+      .bilgi-resmi img {
+        width: 100%;
+        max-width: 350px;
+        height: 200px;
+      }
+
+      .bilgi-metni h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .bilgi-karti {
+        padding: 20px 15px;
+        margin: 0 5px;
+      }
+
+      .bilgi-resmi img {
+        height: 160px;
+      }
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Loading animation for images */
+    .bilgi-resmi img {
+      opacity: 0;
+      animation: fadeInImage 0.6s ease forwards;
+    }
+
+    @keyframes fadeInImage {
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <!-- Navigation -->
+  <nav class="navigation">
+    <a href="{% url 'anasayfa' %}" class="nav-home">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9,22 9,12 15,12 15,22"/>
+      </svg>
+      Ana Sayfa
+    </a>
+  </nav>
 
-  <!-- Sayfa Başlığı Arka Planlı -->
+  <!-- Modern Banner Section -->
   <section class="bilgiler-banner">
+    <div class="banner-decoration"></div>
     <h1>Faydalı Bilgiler</h1>
+    <p class="banner-subtitle">Size yardımcı olacak önemli bilgiler</p>
   </section>
 
-  <!-- Bilgi Kartları -->
+  <!-- Information List Section -->
   <section class="bilgiler-listesi">
     {% for bilgi in faydali_bilgiler %}
       <div class="bilgi-karti">
-        <div class="bilgi-metni">
-          <h2>{{ bilgi.baslik }}</h2>
-          <p>{{ bilgi.aciklama }}</p>
-        </div>
-        {% if bilgi.resim %}
-          <div class="bilgi-resmi">
-            <img src="{{ bilgi.resim.url }}" alt="{{ bilgi.baslik }}">
+        <div class="bilgi-content">
+          <div class="bilgi-metni">
+            <h2>{{ bilgi.baslik }}</h2>
+            <p>{{ bilgi.aciklama }}</p>
           </div>
-        {% endif %}
+          {% if bilgi.resim %}
+            <div class="bilgi-resmi">
+              <img src="{{ bilgi.resim.url }}" alt="{{ bilgi.baslik }}">
+            </div>
+          {% endif %}
+        </div>
       </div>
     {% empty %}
-      <p>Henüz bilgi eklenmemiş.</p>
+      <div class="empty-state">
+        <h3>Henüz bilgi eklenmemiş</h3>
+        <p>Yakında faydalı bilgiler burada görüntülenecektir.</p>
+      </div>
     {% endfor %}
   </section>
 
