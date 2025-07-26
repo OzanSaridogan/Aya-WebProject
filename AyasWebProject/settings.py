@@ -96,7 +96,14 @@ WSGI_APPLICATION = 'AyasWebProject.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ['DATABASE_URL'])
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ayasdb',
+        'USER': 'ayasdb_user',
+        'PASSWORD': 'OF5KN6yi6nTAq5Wlm4ydoZZNIHHKxVyL',
+        'HOST': 'dpg-d226ffbe5dus739afv00-a.oregon-postgres.render.com',
+        'PORT': '5432',
+    }
 }
 
 # Django admin panelini web üzerinde kullanabilmek için gerekli ayarlar
