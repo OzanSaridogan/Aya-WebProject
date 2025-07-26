@@ -33,10 +33,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
-
+if not SECRET_KEY:
+    # Fallback for local development only; do NOT use in production
+    SECRET_KEY = 'django-insecure-t_n#1o9wse(lys7gk2zo!&6foem+x*#vwmx1g$p-z&x1_nb%q@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['ayaswebproject-test.onrender.com', '127.0.0.1', 'localhost']
 
@@ -99,11 +101,11 @@ WSGI_APPLICATION = 'AyasWebProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT', '5432'),
+        'NAME': 'ayasdb',
+        'USER': 'ayasdb_user',
+        'PASSWORD': 'OF5KN6yi6nTAq5Wlm4ydoZZNIHHKxVyL',
+        'HOST': 'dpg-d226ffbe5dus739afv00-a.oregon-postgres.render.com',
+        'PORT': '5432',
     }
 }
 
