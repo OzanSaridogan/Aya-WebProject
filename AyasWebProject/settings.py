@@ -19,6 +19,10 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
+import os
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -83,13 +87,17 @@ WSGI_APPLICATION = 'AyasWebProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+#DATABASES = {
+ #   'default': {
+  #      'ENGINE': 'django.db.backends.sqlite3',
+   #     'NAME': BASE_DIR / 'db.sqlite3',
+    #}
+#}
 
+
+DATABASES = {
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))  # Use DATABASE_URL from environment or default to SQLite
+}   
 
 # Django admin panelini web üzerinde kullanabilmek için gerekli ayarlar
 
