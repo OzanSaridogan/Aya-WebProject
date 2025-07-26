@@ -96,9 +96,7 @@ WSGI_APPLICATION = 'AyasWebProject.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.parse(
-        os.environ.get('DATABASE_URL', f'sqlite:///{BASE_DIR}/db.sqlite3')
-    )
+    'default': dj_database_url.parse(os.environ['DATABASE_URL'])
 }
 
 # Django admin panelini web üzerinde kullanabilmek için gerekli ayarlar
