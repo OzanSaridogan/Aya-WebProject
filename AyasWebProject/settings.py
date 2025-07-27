@@ -101,10 +101,10 @@ WSGI_APPLICATION = 'AyasWebProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ayasdb',
-        'USER': 'ayasdb_user',
-        'PASSWORD': 'OF5KN6yi6nTAq5Wlm4ydoZZNIHHKxVyL',
-        'HOST': 'dpg-d226ffbe5dus739afv00-a.oregon-postgres.render.com',
+        'NAME': 'ayasdb_kucq',
+        'USER': 'ayasdb_kucq_user',
+        'PASSWORD': '6Rp1XUJy0zw8y6UtXw1RBco8ru4wO4dM',
+        'HOST': 'dpg-d22t376mcj7s73cvkqjg-a.oregon-postgres.render.com',
         'PORT': '5432',
     }
 }
