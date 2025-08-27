@@ -324,6 +324,14 @@
               <img src="{{ duyuru.resim.url }}" alt="{{ duyuru.baslik }}">
             </div>
           {% endif %}
+          {% if duyuru.video %}
+            <div class="duyuru-resmi" style="margin-top:15px;">
+              <video width="280" height="180" controls>
+                <source src="{{ duyuru.video.url }}" type="video/mp4">
+                Tarayıcınız video etiketini desteklemiyor.
+              </video>
+            </div>
+          {% endif %}
         </div>
       </div>
     {% empty %}

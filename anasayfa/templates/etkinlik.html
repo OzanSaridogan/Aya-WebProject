@@ -325,6 +325,14 @@
               <img src="{{ etkinlik.resim.url }}" alt="{{ etkinlik.baslik }}">
             </div>
           {% endif %}
+          {% if etkinlik.video %}
+            <div class="etkinlik-resmi" style="margin-top:15px;">
+              <video width="280" height="180" controls>
+                <source src="{{ etkinlik.video.url }}" type="video/mp4">
+                Tarayıcınız video etiketini desteklemiyor.
+              </video>
+            </div>
+          {% endif %}
         </div>
       </div>
     {% empty %}
