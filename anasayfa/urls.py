@@ -15,6 +15,7 @@ urlpatterns = [
     path('iletisim/', views.iletisim, name='iletisim'),
     path('contact/', views.contact, name='contact'),  # Yeni iletişim sayfası için
     path('Login/', views.login_view, name='login'),  # Giriş sayfası
+    path('messages/', views.message_list, name='message_list'),  # Mesajlar sayfası
 ]
 
 urlpatterns += staticfiles_urlpatterns()  # Static files için URL kalıplarını ekle
