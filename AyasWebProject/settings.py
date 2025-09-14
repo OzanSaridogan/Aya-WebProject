@@ -38,7 +38,7 @@ if not SECRET_KEY:
     SECRET_KEY = 'django-insecure-t_n#1o9wse(lys7gk2zo!&6foem+x*#vwmx1g$p-z&x1_nb%q@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['ayaswebproject-test.onrender.com', '127.0.0.1', 'localhost', 'www.ayasvakfi.com', 'ayasvakfi.com']
 
@@ -161,7 +161,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Media files (user uploads)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/data/media'   # inside your Render Disk mount
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Default primary key field type
