@@ -4,7 +4,18 @@ from .models import Etkinlik, Duyuru, FaydaliBilgi, ContactMessage
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
+
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.db import connection
+from django.http import HttpResponse
+import hashlib
+
 # Create your views here.
+
+""""
 def login_view(request):
     error = None
     if request.method == 'POST':
@@ -17,6 +28,55 @@ def login_view(request):
             return redirect('/admin/')
         else:
             error = 'Kullanıcı adı veya şifre yanlış.'
+    return render(request, 'login.html', {'error': error})
+
+"""
+def login_view(request):
+    """
+    ❌ TEHLİKELİ: Raw SQL sorgusu ile string concatenation
+    
+    Saldırı:
+    username: admin' OR '1'='1' --
+    password: herhangi
+    
+    Bu kod SQL Injection'a tamamen açık!
+    """
+    error = None
+    
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        
+        # Şifreyi hash'le (yine de güvensiz!)
+        password_hash = hashlib.md5(password.encode()).hexdigest()
+        
+        # ❌ GÜVENSIZ: String concatenation ile SQL sorgusu
+        with connection.cursor() as cursor:
+            # TEHLİKELİ KOD - ASLA BÖYLE YAPMAYIN!
+            query = f"""
+                SELECT id, username, email, is_staff 
+                FROM auth_user 
+                WHERE username = '{username}' AND password = '{password_hash}'
+            """
+            
+            print(f"[ZAFİYETLİ] Çalıştırılan sorgu: {query}")
+            
+            try:
+                cursor.execute(query)
+                user_data = cursor.fetchone()
+                
+                if user_data:
+                    # Kullanıcı bulundu, session oluştur
+                    request.session['user_id'] = user_data[0]
+                    request.session['username'] = user_data[1]
+                    request.session['is_admin'] = user_data[3]
+                    
+                    return redirect('/admin/')
+                else:
+                    error = 'Kullanıcı adı veya şifre yanlış.'
+            except Exception as e:
+                error = f'Hata oluştu: {str(e)}'
+    
     return render(request, 'login.html', {'error': error})
 
 @login_required
