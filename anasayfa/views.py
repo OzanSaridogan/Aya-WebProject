@@ -55,9 +55,32 @@ def duyurular_view(request):
     return render(request, 'duyurular.html', {'duyurular': duyurular})
 
 def ayas(request):
-    from .models import AyasBilgi
-    ayas_bilgiler = AyasBilgi.objects.all().order_by('-tarih')
-    return render(request, 'ayas.html', {'ayas_bilgiler': ayas_bilgiler})
+    # Import models here to avoid circular import issues at module import time
+    from .models import (
+        AyasBilgi,
+        AyasTarihi,
+        GezilecekYer,
+        AyasKoyu,
+        AyastanHaber,
+        DigerBilgi,
+    )
+
+    context = {}
+
+    # Legacy single-list (if AyasBilgi is still used elsewhere)
+    try:
+        context['ayas_bilgiler'] = AyasBilgi.objects.all().order_by('-tarih')
+    except Exception:
+        context['ayas_bilgiler'] = []
+
+    # New category-wise lists (added via admin)
+    context['ayas_tarihi'] = AyasTarihi.objects.all().order_by('sira', '-tarih')
+    context['gezilecek_yerler'] = GezilecekYer.objects.all().order_by('sira', '-tarih')
+    context['ayas_koyleri'] = AyasKoyu.objects.all().order_by('sira', 'baslik')
+    context['ayas_haberleri'] = AyastanHaber.objects.filter(aktif=True).order_by('-tarih', '-yayinlanma_tarihi')
+    context['diger_bilgiler'] = DigerBilgi.objects.all().order_by('sira', '-tarih')
+
+    return render(request, 'ayas.html', context)
 
 def faydali_bilgiler_view(request):
     faydali_bilgiler = FaydaliBilgi.objects.all().order_by('-tarih')

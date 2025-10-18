@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ayaş Hakkında</title>
-  {% load static %}
   <style>
     * {
       margin: 0;
@@ -57,7 +56,7 @@
     .ayas-banner {
       background: linear-gradient(135deg, #374270 0%, #74bdde 100%);
       position: relative;
-      padding: 80px 20px 60px;
+      padding: 80px 20px 40px;
       text-align: center;
       overflow: hidden;
     }
@@ -89,6 +88,63 @@
       font-weight: 400;
       position: relative;
       z-index: 1;
+      margin-bottom: 30px;
+    }
+
+    /* Section Navigation Menu */
+    .section-nav {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 20px;
+      margin: -40px auto 40px;
+      max-width: 1200px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .section-nav-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #74bdde;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .section-nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .section-nav-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #2e617759 0%, #74bdde 100%);
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(55, 66, 112, 0.2);
+    }
+
+    .section-nav-links a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(55, 66, 112, 0.3);
+      background: linear-gradient(135deg, #5a6fa8 0%, #74bdde 100%);
+    }
+
+    .section-nav-links a svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
     }
 
     /* Decorative elements */
@@ -120,17 +176,54 @@
       50% { transform: translateY(-20px); }
     }
 
-    /* Ayaş Information List Section */
-    .ayas-bilgiler-listesi {
+    /* Main Container */
+    .ayas-container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 60px 20px;
+      padding: 20px;
+    }
+
+    /* Section Header */
+    .section-header {
+      background: linear-gradient(135deg, #374270 0%, #74bdde 100%);
+      border-radius: 15px;
+      padding: 30px;
+      margin: 40px 0 30px;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(55, 66, 112, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+      pointer-events: none;
+    }
+
+    .section-header h2 {
+      color: white;
+      font-size: clamp(24px, 5vw, 36px);
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Content Cards */
+    .content-grid {
       display: flex;
       flex-direction: column;
       gap: 30px;
+      margin-bottom: 40px;
     }
 
-    .ayas-bilgi-karti {
+    .content-card {
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       border-radius: 20px;
@@ -142,7 +235,7 @@
       overflow: hidden;
     }
 
-    .ayas-bilgi-karti::before {
+    .content-card::before {
       content: '';
       position: absolute;
       top: 0;
@@ -152,22 +245,22 @@
       background: linear-gradient(135deg, #374270 0%, #74bdde 100%);
     }
 
-    .ayas-bilgi-karti:hover {
+    .content-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
     }
 
-    .ayas-bilgi-content {
+    .content-wrapper {
       display: flex;
       gap: 30px;
       align-items: flex-start;
     }
 
-    .ayas-bilgi-metni {
+    .content-text {
       flex: 1;
     }
 
-    .ayas-bilgi-metni h2 {
+    .content-text h3 {
       font-size: clamp(20px, 4vw, 26px);
       font-weight: 600;
       color: #2d3748;
@@ -175,7 +268,7 @@
       line-height: 1.3;
     }
 
-    .ayas-bilgi-metni p {
+    .content-text p {
       font-size: 16px;
       line-height: 1.7;
       color: #4a5568;
@@ -183,22 +276,27 @@
       margin-bottom: 15px;
     }
 
-    .ayas-bilgi-metni small {
+    .content-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .meta-tag {
       font-size: 14px;
       color: #718096;
-      font-style: italic;
       background: rgba(102, 126, 234, 0.1);
       padding: 5px 12px;
       border-radius: 15px;
       display: inline-block;
     }
 
-    .ayas-bilgi-resmi {
+    .content-media {
       flex-shrink: 0;
-      position: relative;
     }
 
-    .ayas-bilgi-resmi img {
+    .content-media img {
       width: 280px;
       height: 180px;
       object-fit: cover;
@@ -207,27 +305,55 @@
       transition: transform 0.3s ease;
     }
 
-    .ayas-bilgi-karti:hover .ayas-bilgi-resmi img {
+    .content-card:hover .content-media img {
       transform: scale(1.02);
+    }
+
+    .content-media video {
+      width: 280px;
+      height: 180px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
     /* Empty state */
     .empty-state {
       text-align: center;
-      padding: 80px 20px;
+      padding: 60px 20px;
       color: #718096;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 15px;
+      margin: 20px 0;
     }
 
     .empty-state h3 {
-      font-size: 24px;
+      font-size: 20px;
       margin-bottom: 10px;
       color: #4a5568;
+    }
+
+    .empty-state p {
+      font-size: 16px;
     }
 
     /* Mobile Responsive */
     @media (max-width: 768px) {
       .ayas-banner {
-        padding: 60px 20px 40px;
+        padding: 60px 20px 30px;
+      }
+
+      .section-nav {
+        margin: -30px 15px 30px;
+        padding: 15px;
+      }
+
+      .section-nav-links {
+        gap: 8px;
+      }
+
+      .section-nav-links a {
+        font-size: 13px;
+        padding: 8px 15px;
       }
 
       .banner-decoration {
@@ -242,43 +368,52 @@
         height: 40px;
       }
 
-      .ayas-bilgiler-listesi {
-        padding: 40px 15px;
-        gap: 25px;
+      .ayas-container {
+        padding: 15px;
       }
 
-      .ayas-bilgi-karti {
-        padding: 25px 20px;
+      .section-header {
+        padding: 20px;
+        margin: 30px 0 20px;
       }
 
-      .ayas-bilgi-content {
+      .content-grid {
+        gap: 20px;
+      }
+
+      .content-card {
+        padding: 20px;
+      }
+
+      .content-wrapper {
         flex-direction: column;
         gap: 20px;
       }
 
-      .ayas-bilgi-resmi {
+      .content-media {
         align-self: center;
       }
 
-      .ayas-bilgi-resmi img {
+      .content-media img,
+      .content-media video {
         width: 100%;
         max-width: 350px;
         height: 200px;
       }
 
-      .ayas-bilgi-metni h2 {
+      .content-text h3 {
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
       }
     }
 
     @media (max-width: 480px) {
-      .ayas-bilgi-karti {
-        padding: 20px 15px;
-        margin: 0 5px;
+      .content-card {
+        padding: 15px;
       }
 
-      .ayas-bilgi-resmi img {
+      .content-media img,
+      .content-media video {
         height: 160px;
       }
     }
@@ -289,7 +424,7 @@
     }
 
     /* Loading animation for images */
-    .ayas-bilgi-resmi img {
+    .content-media img {
       opacity: 0;
       animation: fadeInImage 0.6s ease forwards;
     }
@@ -298,6 +433,11 @@
       to {
         opacity: 1;
       }
+    }
+
+    /* Scroll padding for anchor links */
+    section {
+      scroll-margin-top: 20px;
     }
   </style>
 </head>
@@ -321,38 +461,306 @@
     <p class="banner-subtitle">Tarihi ve doğal güzellikleriyle Ayaş ilçesi</p>
   </section>
 
-  <!-- Ayaş Information List Section -->
-  <section class="ayas-bilgiler-listesi">
-    {% for bilgi in ayas_bilgiler %}
-      <div class="ayas-bilgi-karti">
-        <div class="ayas-bilgi-content">
-          <div class="ayas-bilgi-metni">
-            <h2>{{ bilgi.baslik }}</h2>
-            <p>{{ bilgi.aciklama }}</p>
-            <small>{{ bilgi.tarih }}</small>
+  <!-- Section Navigation Menu -->
+  <div class="section-nav">
+    <div class="section-nav-title">Bölümler</div>
+    <div class="section-nav-links">
+      <a href="#genel-bilgiler">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        Genel Bilgiler
+      </a>
+      <a href="#ayas-tarihi">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+        </svg>
+        Ayaşın Tarihi
+      </a>
+      <a href="#gezilecek-yerler">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+        Gezilecek Yerler
+      </a>
+      <a href="#ayas-koyleri">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+        </svg>
+        Ayaşın Köyleri
+      </a>
+      <a href="#ayas-haberler">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+        </svg>
+        Ayaş'tan Haberler
+      </a>
+      <a href="#diger-bilgiler">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+        </svg>
+        Diğer
+      </a>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="ayas-container">
+    
+    <!-- Genel Bilgiler Section -->
+    <section id="genel-bilgiler">
+      <div class="section-header">
+        <h2>Genel Bilgiler</h2>
+      </div>
+      <div class="content-grid">
+        {% for bilgi in ayas_bilgiler %}
+          <div class="content-card">
+            <div class="content-wrapper">
+              <div class="content-text">
+                <h3>{{ bilgi.baslik }}</h3>
+                <p>{{ bilgi.aciklama }}</p>
+                <div class="content-meta">
+                  <span class="meta-tag">{{ bilgi.tarih }}</span>
+                </div>
+              </div>
+              {% if bilgi.resim %}
+                <div class="content-media">
+                  <img src="{{ bilgi.resim.url }}" alt="{{ bilgi.baslik }}">
+                </div>
+              {% endif %}
+            </div>
+            {% if bilgi.video %}
+              <div class="content-media" style="margin-top: 20px;">
+                <video controls>
+                  <source src="{{ bilgi.video.url }}" type="video/mp4">
+                  Tarayıcınız video etiketini desteklemiyor.
+                </video>
+              </div>
+            {% endif %}
           </div>
-          {% if bilgi.resim %}
-            <div class="ayas-bilgi-resmi">
-              <img src="{{ bilgi.resim.url }}" alt="{{ bilgi.baslik }}">
-            </div>
-          {% endif %}
-          {% if bilgi.video %}
-            <div class="ayas-bilgi-resmi" style="margin-top:15px;">
-              <video width="280" height="180" controls>
-                <source src="{{ bilgi.video.url }}" type="video/mp4">
-                Tarayıcınız video etiketini desteklemiyor.
-              </video>
-            </div>
-          {% endif %}
-        </div>
+        {% empty %}
+          <div class="empty-state">
+            <h3>Henüz bilgi eklenmemiş</h3>
+            <p>Genel bilgiler yakında eklenecektir.</p>
+          </div>
+        {% endfor %}
       </div>
-    {% empty %}
-      <div class="empty-state">
-        <h3>Henüz bilgi eklenmemiş</h3>
-        <p>Ayaş hakkında bilgiler yakında eklenecektir.</p>
+    </section>
+
+    <!-- Ayaşın Tarihi Section -->
+    <section id="ayas-tarihi">
+      <div class="section-header">
+        <h2>Ayaşın Tarihi</h2>
       </div>
-    {% endfor %}
-  </section>
+      <div class="content-grid">
+        {% for tarih in ayas_tarihi %}
+          <div class="content-card">
+            <div class="content-wrapper">
+              <div class="content-text">
+                <h3>{{ tarih.baslik }}</h3>
+                <p>{{ tarih.aciklama }}</p>
+                <div class="content-meta">
+                  <span class="meta-tag">{{ tarih.tarih }}</span>
+                </div>
+              </div>
+              {% if tarih.resim %}
+                <div class="content-media">
+                  <img src="{{ tarih.resim.url }}" alt="{{ tarih.baslik }}">
+                </div>
+              {% endif %}
+            </div>
+            {% if tarih.video %}
+              <div class="content-media" style="margin-top: 20px;">
+                <video controls>
+                  <source src="{{ tarih.video.url }}" type="video/mp4">
+                  Tarayıcınız video etiketini desteklemiyor.
+                </video>
+              </div>
+            {% endif %}
+          </div>
+        {% empty %}
+          <div class="empty-state">
+            <h3>Henüz içerik eklenmemiş</h3>
+            <p>Ayaş'ın tarihi hakkında bilgiler yakında eklenecektir.</p>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Gezilecek Yerler Section -->
+    <section id="gezilecek-yerler">
+      <div class="section-header">
+        <h2>Gezilecek Yerler</h2>
+      </div>
+      <div class="content-grid">
+        {% for yer in gezilecek_yerler %}
+          <div class="content-card">
+            <div class="content-wrapper">
+              <div class="content-text">
+                <h3>{{ yer.baslik }}</h3>
+                <p>{{ yer.aciklama }}</p>
+                <div class="content-meta">
+                  {% if yer.konum %}
+                    <span class="meta-tag">📍 {{ yer.konum }}</span>
+                  {% endif %}
+                  <span class="meta-tag">{{ yer.tarih }}</span>
+                </div>
+              </div>
+              {% if yer.resim %}
+                <div class="content-media">
+                  <img src="{{ yer.resim.url }}" alt="{{ yer.baslik }}">
+                </div>
+              {% endif %}
+            </div>
+            {% if yer.video %}
+              <div class="content-media" style="margin-top: 20px;">
+                <video controls>
+                  <source src="{{ yer.video.url }}" type="video/mp4">
+                  Tarayıcınız video etiketini desteklemiyor.
+                </video>
+              </div>
+            {% endif %}
+          </div>
+        {% empty %}
+          <div class="empty-state">
+            <h3>Henüz içerik eklenmemiş</h3>
+            <p>Gezilecek yerler yakında eklenecektir.</p>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Ayaşın Köyleri Section -->
+    <section id="ayas-koyleri">
+      <div class="section-header">
+        <h2>Ayaşın Köyleri</h2>
+      </div>
+      <div class="content-grid">
+        {% for koy in ayas_koyleri %}
+          <div class="content-card">
+            <div class="content-wrapper">
+              <div class="content-text">
+                <h3>{{ koy.baslik }}</h3>
+                <p>{{ koy.aciklama }}</p>
+                <div class="content-meta">
+                  {% if koy.nufus %}
+                    <span class="meta-tag">👥 Nüfus: {{ koy.nufus }}</span>
+                  {% endif %}
+                  {% if koy.uzaklik %}
+                    <span class="meta-tag">🚗 {{ koy.uzaklik }}</span>
+                  {% endif %}
+                  <span class="meta-tag">{{ koy.tarih }}</span>
+                </div>
+              </div>
+              {% if koy.resim %}
+                <div class="content-media">
+                  <img src="{{ koy.resim.url }}" alt="{{ koy.baslik }}">
+                </div>
+              {% endif %}
+            </div>
+            {% if koy.video %}
+              <div class="content-media" style="margin-top: 20px;">
+                <video controls>
+                  <source src="{{ koy.video.url }}" type="video/mp4">
+                  Tarayıcınız video etiketini desteklemiyor.
+                </video>
+              </div>
+            {% endif %}
+          </div>
+        {% empty %}
+          <div class="empty-state">
+            <h3>Henüz içerik eklenmemiş</h3>
+            <p>Köy bilgileri yakında eklenecektir.</p>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Ayaş'tan Haberler Section -->
+    <section id="ayas-haberler">
+      <div class="section-header">
+        <h2>Ayaş'tan Haberler</h2>
+      </div>
+      <div class="content-grid">
+        {% for haber in ayas_haberler %}
+          <div class="content-card">
+            <div class="content-wrapper">
+              <div class="content-text">
+                <h3>{{ haber.baslik }}</h3>
+                <p>{{ haber.aciklama }}</p>
+                <div class="content-meta">
+                  <span class="meta-tag">📅 {{ haber.tarih }}</span>
+                </div>
+              </div>
+              {% if haber.resim %}
+                <div class="content-media">
+                  <img src="{{ haber.resim.url }}" alt="{{ haber.baslik }}">
+                </div>
+              {% endif %}
+            </div>
+            {% if haber.video %}
+              <div class="content-media" style="margin-top: 20px;">
+                <video controls>
+                  <source src="{{ haber.video.url }}" type="video/mp4">
+                  Tarayıcınız video etiketini desteklemiyor.
+                </video>
+              </div>
+            {% endif %}
+          </div>
+        {% empty %}
+          <div class="empty-state">
+            <h3>Henüz haber eklenmemiş</h3>
+            <p>Ayaş'tan haberler yakında eklenecektir.</p>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Diğer Bilgiler Section -->
+    <section id="diger-bilgiler">
+      <div class="section-header">
+        <h2>Diğer Bilgiler</h2>
+      </div>
+      <div class="content-grid">
+        {% for diger in diger_bilgiler %}
+          <div class="content-card">
+            <div class="content-wrapper">
+              <div class="content-text">
+                <h3>{{ diger.baslik }}</h3>
+                <p>{{ diger.aciklama }}</p>
+                <div class="content-meta">
+                  {% if diger.kategori %}
+                    <span class="meta-tag">🏷️ {{ diger.kategori }}</span>
+                  {% endif %}
+                  <span class="meta-tag">{{ diger.tarih }}</span>
+                </div>
+              </div>
+              {% if diger.resim %}
+                <div class="content-media">
+                  <img src="{{ diger.resim.url }}" alt="{{ diger.baslik }}">
+                </div>
+              {% endif %}
+            </div>
+            {% if diger.video %}
+              <div class="content-media" style="margin-top: 20px;">
+                <video controls>
+                  <source src="{{ diger.video.url }}" type="video/mp4">
+                  Tarayıcınız video etiketini desteklemiyor.
+                </video>
+              </div>
+            {% endif %}
+          </div>
+        {% empty %}
+          <div class="empty-state">
+            <h3>Henüz içerik eklenmemiş</h3>
+            <p>Diğer bilgiler yakında eklenecektir.</p>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+
+  </div>
 
 </body>
 </html>
