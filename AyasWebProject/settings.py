@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['ayaswebproject-test.onrender.com', '127.0.0.1', 'localhost', 'www.ayasvakfi.com', 'ayasvakfi.com']
 
