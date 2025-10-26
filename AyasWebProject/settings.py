@@ -1,11 +1,4 @@
-# Email settings for Gmail SMTP
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'your_gmail_address@gmail.com'  # Replace with your Gmail address
-EMAIL_HOST_PASSWORD = 'your_gmail_app_password'   # Replace with your Gmail App Password
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 """
 Django settings for AyasWebProject project.
 
@@ -32,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# Note: set the secret using the environment variable `DJANGO_SECRET_KEY` in production.
+# For local development you can create a `.env` file (do NOT commit it) or set the OS environment variable.
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
-if not SECRET_KEY:
-    # Fallback for local development only; do NOT use in production
-    SECRET_KEY = 'django-insecure-t_n#1o9wse(lys7gk2zo!&6foem+x*#vwmx1g$p-z&x1_nb%q@'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -91,24 +84,15 @@ WSGI_APPLICATION = 'AyasWebProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-#DATABASES = {
- #   'default': {
-  #      'ENGINE': 'django.db.backends.sqlite3',
-   #     'NAME': BASE_DIR / 'db.sqlite3',
-    #}
-#}
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ayas_test_db',
-        'USER': 'ayas_test_db_user',
-        'PASSWORD': 'fsDuzn0MEeIAQvN6LPZMhhXs7INPr6Ad',
-        'HOST': 'dpg-d2n9srf5r7bs73f9sssg-a.oregon-postgres.render.com',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+
 
 # Django admin panelini web üzerinde kullanabilmek için gerekli ayarlar
 
