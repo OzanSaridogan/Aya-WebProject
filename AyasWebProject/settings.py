@@ -33,7 +33,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['ayaswebproject-test.onrender.com', '127.0.0.1', 'localhost', 'www.ayasvakfi.com', 'ayasvakfi.com']
+ALLOWED_HOSTS = ['207.154.215.181', '127.0.0.1', 'localhost', 'www.ayasvakfi.com', 'ayasvakfi.com']
 
 
 
@@ -86,8 +86,12 @@ WSGI_APPLICATION = 'AyasWebProject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ayas_db',
+        'USER': 'ayas_db_user',
+        'PASSWORD': 'ozan',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -98,6 +102,8 @@ DATABASES = {
 
 CSRF_TRUSTED_ORIGINS = [
     "https://ayaswebproject-test.onrender.com",
+    "https://ayasvakfi.com",
+    "https://www.ayasvakfi.com",
 ]
 
 
@@ -138,6 +144,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 import os
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
