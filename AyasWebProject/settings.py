@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # Note: set the secret using the environment variable `DJANGO_SECRET_KEY` in production.
 # For local development you can create a `.env` file (do NOT commit it) or set the OS environment variable.
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+SECRET_KEY = 'django-insecure-t_n#1o9wse(lys7gk2zo!&6foem+x*#vwmx1g$p-z&x1_nb%q@'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
