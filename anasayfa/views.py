@@ -1,6 +1,13 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.http import HttpResponse
-from .models import Etkinlik, Duyuru, FaydaliBilgi, ContactMessage
+from .models import (
+    AyasBilgi,
+    AyasKoyu,
+    GezilecekYer,
+    AyasTarihi,
+    AyastanHaber,
+    DigerBilgi,
+)
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
@@ -34,11 +41,7 @@ def login_view(request):
 
 
 @login_required
-def message_list(request):
-    if not request.user.is_staff and not request.user.is_superuser:
-        return redirect('/')
-    messages = ContactMessage.objects.all().order_by('-created_at')
-    return render(request, 'message_list.html', {'messages': messages})
+
 
 def contact(request):
     return render(request, 'contact.html')
@@ -46,51 +49,48 @@ def contact(request):
 def anasayfa(request):
     return render(request, 'anasayfa2.html')
 
-def etkinlik(request):
-    etkinlikler = Etkinlik.objects.order_by('-tarih', '-saat')
-    return render(request, 'etkinlik.html', {'etkinlikler': etkinlikler})
+def ayas_tarihi(request):
+    # Return Ayaş tarihi entries ordered by 'sira' then newest
+    ayas_tarihi = AyasTarihi.objects.order_by('sira', '-tarih')
 
-def duyurular_view(request):
-    duyurular = Duyuru.objects.all().order_by('-tarih')
-    return render(request, 'duyurular.html', {'duyurular': duyurular})
+    return render(request, 'Ayas_tarihi.html', {
+        'ayas_tarihi': ayas_tarihi,
+    })
+
+def gezilecek_yerler_view(request):
+    gezilecek_yerler = GezilecekYer.objects.all().order_by('-tarih')
+    return render(request, 'Gezilecek_yerler.html', {'gezilecek_yerler': gezilecek_yerler})
 
 def ayas(request):
     # Import models here to avoid circular import issues at module import time
-    from .models import (
-        AyasBilgi,
-        AyasTarihi,
-        GezilecekYer,
-        AyasKoyu,
-        AyastanHaber,
-        DigerBilgi,
-    )
+    ayas_bilgiler = AyasBilgi.objects.all().order_by('-tarih')
+    context = {'ayas_bilgiler': ayas_bilgiler}
 
-    context = {}
+    return render(request, 'Guncel_Haberler.html', context)
 
-    # Legacy single-list (if AyasBilgi is still used elsewhere)
-    try:
-        context['ayas_bilgiler'] = AyasBilgi.objects.all().order_by('-tarih')
-    except Exception:
-        context['ayas_bilgiler'] = []
+def koyler(request):
+    # Import models here to avoid circular import issues at module import time
+    ayas_koyleri = AyasKoyu.objects.all().order_by('-tarih')
+    context = {'ayas_koyleri': ayas_koyleri}
 
-    # New category-wise lists (added via admin)
-    context['ayas_tarihi'] = AyasTarihi.objects.all().order_by('sira', '-tarih')
-    context['gezilecek_yerler'] = GezilecekYer.objects.all().order_by('sira', '-tarih')
-    context['ayas_koyleri'] = AyasKoyu.objects.all().order_by('sira', 'baslik')
-    context['ayas_haberleri'] = AyastanHaber.objects.filter(aktif=True).order_by('-tarih', '-yayinlanma_tarihi')
-    context['diger_bilgiler'] = DigerBilgi.objects.all().order_by('sira', '-tarih')
+    return render(request, 'koyler.html', context)
 
-    return render(request, 'ayas.html', context)
-
-def faydali_bilgiler_view(request):
-    faydali_bilgiler = FaydaliBilgi.objects.all().order_by('-tarih')
-    return render(request, 'faydali_bilgiler.html', {'faydali_bilgiler': faydali_bilgiler})
-
-def galeri(request):
-    return render(request, 'galeri.html')
 
 def iletisim(request):
     return render(request, 'contact.html')
+
+
+def guncel_haberler(request):
+    """Render the 'Guncel_Haberler.html' template with active news items."""
+    # Only show active news items, newest first
+    ayastan_haberler = AyastanHaber.objects.filter(aktif=True).order_by('-tarih')
+    return render(request, 'Guncel_Haberler.html', {'ayastan_haberler': ayastan_haberler})
+
+
+def diger_view(request):
+    """Render the 'Diger.html' template using DigerBilgi as the source."""
+    faydali_bilgiler = DigerBilgi.objects.all().order_by('sira', '-tarih')
+    return render(request, 'Diger.html', {'Diger': faydali_bilgiler})
 
 
 

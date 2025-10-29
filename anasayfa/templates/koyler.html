@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ayaş Hakkında</title>
+  <title>Diğer</title>
   <style>
     * {
       margin: 0;
@@ -457,123 +457,35 @@
   <!-- Modern Banner Section -->
   <section class="ayas-banner">
     <div class="banner-decoration"></div>
-    <h1>Ayaş Hakkında</h1>
+    <h1>Köyler ve Mahalleler</h1>
     <p class="banner-subtitle">Tarihi ve doğal güzellikleriyle Ayaş ilçesi</p>
   </section>
 
-  <!-- Section Navigation Menu -->
-  <div class="section-nav">
-    <div class="section-nav-title">Bölümler</div>
-    <div class="section-nav-links">
-      <a href="#genel-bilgiler">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-        </svg>
-        Genel Bilgiler
-      </a>
-      <a href="#ayas-tarihi">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-        </svg>
-        Ayaşın Tarihi
-      </a>
-      <a href="#gezilecek-yerler">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-        </svg>
-        Gezilecek Yerler
-      </a>
-      <a href="#ayas-koyleri">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-        </svg>
-        Ayaşın Köyleri
-      </a>
-      <a href="#ayas-haberler">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
-        </svg>
-        Ayaş'tan Haberler
-      </a>
-      <a href="#diger-bilgiler">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
-        </svg>
-        Diğer
-      </a>
-    </div>
-  </div>
+  
 
   <!-- Main Container -->
-  <div class="ayas-container">
-    
-    <!-- Genel Bilgiler Section -->
-    <section id="genel-bilgiler">
-      <div class="section-header">
-        <h2>Genel Bilgiler</h2>
-      </div>
+ 
       <div class="content-grid">
-        {% for bilgi in ayas_bilgiler %}
+  {% for item in ayas_koyleri %}
           <div class="content-card">
             <div class="content-wrapper">
               <div class="content-text">
-                <h3>{{ bilgi.baslik }}</h3>
-                <p>{{ bilgi.aciklama }}</p>
+                <h3>{{ item.baslik }}</h3>
+                <p>{{ item.aciklama }}</p>
                 <div class="content-meta">
-                  <span class="meta-tag">{{ bilgi.tarih }}</span>
+                  <span class="meta-tag">{{ item.tarih }}</span>
                 </div>
               </div>
-              {% if bilgi.resim %}
+              {% if item.resim %}
                 <div class="content-media">
-                  <img src="{{ bilgi.resim.url }}" alt="{{ bilgi.baslik }}">
+                  <img src="{{ item.resim.url }}" alt="{{ item.baslik }}">
                 </div>
               {% endif %}
             </div>
-            {% if bilgi.video %}
+            {% if item.video %}
               <div class="content-media" style="margin-top: 20px;">
                 <video controls>
-                  <source src="{{ bilgi.video.url }}" type="video/mp4">
-                  Tarayıcınız video etiketini desteklemiyor.
-                </video>
-              </div>
-            {% endif %}
-          </div>
-        {% empty %}
-          <div class="empty-state">
-            <h3>Henüz bilgi eklenmemiş</h3>
-            <p>Genel bilgiler yakında eklenecektir.</p>
-          </div>
-        {% endfor %}
-      </div>
-    </section>
-
-    <!-- Ayaşın Tarihi Section -->
-    <section id="ayas-tarihi">
-      <div class="section-header">
-        <h2>Ayaşın Tarihi</h2>
-      </div>
-      <div class="content-grid">
-        {% for tarih in ayas_tarihi %}
-          <div class="content-card">
-            <div class="content-wrapper">
-              <div class="content-text">
-                <h3>{{ tarih.baslik }}</h3>
-                <p>{{ tarih.aciklama }}</p>
-                <div class="content-meta">
-                  <span class="meta-tag">{{ tarih.tarih }}</span>
-                </div>
-              </div>
-              {% if tarih.resim %}
-                <div class="content-media">
-                  <img src="{{ tarih.resim.url }}" alt="{{ tarih.baslik }}">
-                </div>
-              {% endif %}
-            </div>
-            {% if tarih.video %}
-              <div class="content-media" style="margin-top: 20px;">
-                <video controls>
-                  <source src="{{ tarih.video.url }}" type="video/mp4">
+                  <source src="{{ item.video.url }}" type="video/mp4">
                   Tarayıcınız video etiketini desteklemiyor.
                 </video>
               </div>
@@ -582,184 +494,11 @@
         {% empty %}
           <div class="empty-state">
             <h3>Henüz içerik eklenmemiş</h3>
-            <p>Ayaş'ın tarihi hakkında bilgiler yakında eklenecektir.</p>
+            <p>Yakında içerik eklenecektir.</p>
           </div>
         {% endfor %}
       </div>
     </section>
-
-    <!-- Gezilecek Yerler Section -->
-    <section id="gezilecek-yerler">
-      <div class="section-header">
-        <h2>Gezilecek Yerler</h2>
-      </div>
-      <div class="content-grid">
-        {% for yer in gezilecek_yerler %}
-          <div class="content-card">
-            <div class="content-wrapper">
-              <div class="content-text">
-                <h3>{{ yer.baslik }}</h3>
-                <p>{{ yer.aciklama }}</p>
-                <div class="content-meta">
-                  {% if yer.konum %}
-                    <span class="meta-tag">📍 {{ yer.konum }}</span>
-                  {% endif %}
-                  <span class="meta-tag">{{ yer.tarih }}</span>
-                </div>
-              </div>
-              {% if yer.resim %}
-                <div class="content-media">
-                  <img src="{{ yer.resim.url }}" alt="{{ yer.baslik }}">
-                </div>
-              {% endif %}
-            </div>
-            {% if yer.video %}
-              <div class="content-media" style="margin-top: 20px;">
-                <video controls>
-                  <source src="{{ yer.video.url }}" type="video/mp4">
-                  Tarayıcınız video etiketini desteklemiyor.
-                </video>
-              </div>
-            {% endif %}
-          </div>
-        {% empty %}
-          <div class="empty-state">
-            <h3>Henüz içerik eklenmemiş</h3>
-            <p>Gezilecek yerler yakında eklenecektir.</p>
-          </div>
-        {% endfor %}
-      </div>
-    </section>
-
-    <!-- Ayaşın Köyleri Section -->
-    <section id="ayas-koyleri">
-      <div class="section-header">
-        <h2>Ayaşın Köyleri</h2>
-      </div>
-      <div class="content-grid">
-        {% for koy in ayas_koyleri %}
-          <div class="content-card">
-            <div class="content-wrapper">
-              <div class="content-text">
-                <h3>{{ koy.baslik }}</h3>
-                <p>{{ koy.aciklama }}</p>
-                <div class="content-meta">
-                  {% if koy.nufus %}
-                    <span class="meta-tag">👥 Nüfus: {{ koy.nufus }}</span>
-                  {% endif %}
-                  {% if koy.uzaklik %}
-                    <span class="meta-tag">🚗 {{ koy.uzaklik }}</span>
-                  {% endif %}
-                  <span class="meta-tag">{{ koy.tarih }}</span>
-                </div>
-              </div>
-              {% if koy.resim %}
-                <div class="content-media">
-                  <img src="{{ koy.resim.url }}" alt="{{ koy.baslik }}">
-                </div>
-              {% endif %}
-            </div>
-            {% if koy.video %}
-              <div class="content-media" style="margin-top: 20px;">
-                <video controls>
-                  <source src="{{ koy.video.url }}" type="video/mp4">
-                  Tarayıcınız video etiketini desteklemiyor.
-                </video>
-              </div>
-            {% endif %}
-          </div>
-        {% empty %}
-          <div class="empty-state">
-            <h3>Henüz içerik eklenmemiş</h3>
-            <p>Köy bilgileri yakında eklenecektir.</p>
-          </div>
-        {% endfor %}
-      </div>
-    </section>
-
-    <!-- Ayaş'tan Haberler Section -->
-    <section id="ayas-haberler">
-      <div class="section-header">
-        <h2>Ayaş'tan Haberler</h2>
-      </div>
-      <div class="content-grid">
-        {% for haber in ayas_haberler %}
-          <div class="content-card">
-            <div class="content-wrapper">
-              <div class="content-text">
-                <h3>{{ haber.baslik }}</h3>
-                <p>{{ haber.aciklama }}</p>
-                <div class="content-meta">
-                  <span class="meta-tag">📅 {{ haber.tarih }}</span>
-                </div>
-              </div>
-              {% if haber.resim %}
-                <div class="content-media">
-                  <img src="{{ haber.resim.url }}" alt="{{ haber.baslik }}">
-                </div>
-              {% endif %}
-            </div>
-            {% if haber.video %}
-              <div class="content-media" style="margin-top: 20px;">
-                <video controls>
-                  <source src="{{ haber.video.url }}" type="video/mp4">
-                  Tarayıcınız video etiketini desteklemiyor.
-                </video>
-              </div>
-            {% endif %}
-          </div>
-        {% empty %}
-          <div class="empty-state">
-            <h3>Henüz haber eklenmemiş</h3>
-            <p>Ayaş'tan haberler yakında eklenecektir.</p>
-          </div>
-        {% endfor %}
-      </div>
-    </section>
-
-    <!-- Diğer Bilgiler Section -->
-    <section id="diger-bilgiler">
-      <div class="section-header">
-        <h2>Diğer Bilgiler</h2>
-      </div>
-      <div class="content-grid">
-        {% for diger in diger_bilgiler %}
-          <div class="content-card">
-            <div class="content-wrapper">
-              <div class="content-text">
-                <h3>{{ diger.baslik }}</h3>
-                <p>{{ diger.aciklama }}</p>
-                <div class="content-meta">
-                  {% if diger.kategori %}
-                    <span class="meta-tag">🏷️ {{ diger.kategori }}</span>
-                  {% endif %}
-                  <span class="meta-tag">{{ diger.tarih }}</span>
-                </div>
-              </div>
-              {% if diger.resim %}
-                <div class="content-media">
-                  <img src="{{ diger.resim.url }}" alt="{{ diger.baslik }}">
-                </div>
-              {% endif %}
-            </div>
-            {% if diger.video %}
-              <div class="content-media" style="margin-top: 20px;">
-                <video controls>
-                  <source src="{{ diger.video.url }}" type="video/mp4">
-                  Tarayıcınız video etiketini desteklemiyor.
-                </video>
-              </div>
-            {% endif %}
-          </div>
-        {% empty %}
-          <div class="empty-state">
-            <h3>Henüz içerik eklenmemiş</h3>
-            <p>Diğer bilgiler yakında eklenecektir.</p>
-          </div>
-        {% endfor %}
-      </div>
-    </section>
-
   </div>
 
 </body>

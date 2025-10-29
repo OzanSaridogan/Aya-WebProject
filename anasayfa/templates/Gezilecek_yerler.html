@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Duyurular</title>
+  <title>Gezilecek Yerler</title>
   {% load static %}
   <style>
     * {
@@ -306,28 +306,28 @@
   <!-- Modern Banner Section -->
   <section class="duyurular-banner">
     <div class="banner-decoration"></div>
-    <h1>Duyurular</h1>
-    <p class="banner-subtitle">Güncel haberler ve duyurularımız</p>
+    <h1>Gezilecek Yerler</h1>
+    <p class="banner-subtitle">Ayaş'ın keşfedilmeyi bekleyen güzellikleri</p>
   </section>
 
   <!-- Announcements List Section -->
   <section class="duyuru-listesi">
-    {% for duyuru in duyurular %}
+    {% for gezilecek_yer in gezilecek_yerler %}
       <div class="duyuru-karti">
         <div class="duyuru-content">
           <div class="duyuru-metni">
-            <h2>{{ duyuru.baslik }}</h2>
-            <p>{{ duyuru.aciklama }}</p>
+            <h2>{{ gezilecek_yer.baslik }}</h2>
+            <p>{{ gezilecek_yer.aciklama }}</p>
           </div>
-          {% if duyuru.resim %}
+          {% if gezilecek_yer.resim %}
             <div class="duyuru-resmi">
-              <img src="{{ duyuru.resim.url }}" alt="{{ duyuru.baslik }}">
+              <img src="{{ gezilecek_yer.resim.url }}" alt="{{ gezilecek_yer.baslik }}">
             </div>
           {% endif %}
-          {% if duyuru.video %}
+          {% if gezilecek_yer.video %}
             <div class="duyuru-resmi" style="margin-top:15px;">
               <video width="280" height="180" controls>
-                <source src="{{ duyuru.video.url }}" type="video/mp4">
+                <source src="{{ gezilecek_yer.video.url }}" type="video/mp4">
                 Tarayıcınız video etiketini desteklemiyor.
               </video>
             </div>
@@ -336,8 +336,8 @@
       </div>
     {% empty %}
       <div class="empty-state">
-        <h3>Henüz duyuru eklenmemiş</h3>
-        <p>Yeni duyurular burada görüntülenecektir.</p>
+        <h3>Henüz içerik eklenmemiş</h3>
+    
       </div>
     {% endfor %}
   </section>

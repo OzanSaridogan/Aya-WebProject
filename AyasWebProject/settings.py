@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import dj_database_url
 import os
+import sys
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
@@ -31,7 +32,7 @@ SECRET_KEY = 'django-insecure-t_n#1o9wse(lys7gk2zo!&6foem+x*#vwmx1g$p-z&x1_nb%q@
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['207.154.215.181', '127.0.0.1', 'localhost', 'www.ayasvakfi.com', 'ayasvakfi.com']
 
@@ -84,6 +85,10 @@ WSGI_APPLICATION = 'AyasWebProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# En üste ekleyin
+# import sys  (already imported above)
+
+# Yerel test için SQLite kullan
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -91,7 +96,7 @@ DATABASES = {
         'USER': 'ayas_db_user',
         'PASSWORD': 'ozan',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '5432',
     }
 }
 

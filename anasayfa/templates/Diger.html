@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Faydalı Bilgiler</title>
+  <title>Diğer</title>
   {% load static %}
   <style>
     * {
@@ -306,13 +306,13 @@
   <!-- Modern Banner Section -->
   <section class="bilgiler-banner">
     <div class="banner-decoration"></div>
-    <h1>Faydalı Bilgiler</h1>
+    <h1>Diğer</h1>
     <p class="banner-subtitle">Size yardımcı olacak önemli bilgiler</p>
   </section>
 
   <!-- Information List Section -->
   <section class="bilgiler-listesi">
-    {% for bilgi in faydali_bilgiler %}
+    {% for bilgi in DigerBilgi %}
       <div class="bilgi-karti">
         <div class="bilgi-content">
           <div class="bilgi-metni">
@@ -337,7 +337,7 @@
     {% empty %}
       <div class="empty-state">
         <h3>Henüz bilgi eklenmemiş</h3>
-        <p>Yakında faydalı bilgiler burada görüntülenecektir.</p>
+        <p>Yakında içerik eklenecektir</p>
       </div>
     {% endfor %}
   </section>

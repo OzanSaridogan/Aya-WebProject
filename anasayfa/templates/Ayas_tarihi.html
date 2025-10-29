@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Etkinliklerimiz</title>
+  <title>Ayaş Tarihi</title>
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   <style>
@@ -296,8 +296,8 @@
   <!-- Modern Banner Section -->
   <section class="etkinlikler-banner">
     <div class="banner-decoration"></div>
-    <h1>Etkinliklerimiz</h1>
-    <p class="banner-subtitle">Sizler için düzenlediğimiz özel etkinlikler</p>
+    <h1>Ayaş Tarihi</h1>
+    <p class="banner-subtitle">Tarihsel Mirasımız</p>
   </section>
 
   <!-- Navigation -->
@@ -312,23 +312,23 @@
   </nav>
 
   <!-- Events List Section -->
-  <section class="etkinlikler-listesi">
-    {% for etkinlik in etkinlikler %}
-      <div class="etkinlik-karti">
-        <div class="etkinlik-content">
-          <div class="etkinlik-metni">
-            <h2>{{ etkinlik.baslik }}</h2>
-            <p>{{ etkinlik.aciklama }}</p>
+  <section class="ayas-tarihi">
+    {% for item in ayas_tarihi %}
+      <div class="ayas-tarihi-karti">
+        <div class="ayas-content">
+          <div class="ayas-metni">
+            <h2>{{ item.baslik }}</h2>
+            <p>{{ item.aciklama }}</p>
           </div>
-          {% if etkinlik.resim %}
-            <div class="etkinlik-resmi">
-              <img src="{{ etkinlik.resim.url }}" alt="{{ etkinlik.baslik }}">
+          {% if item.resim %}
+            <div class="ayas-resmi">
+              <img src="{{ item.resim.url }}" alt="{{ item.baslik }}">
             </div>
           {% endif %}
-          {% if etkinlik.video %}
-            <div class="etkinlik-resmi" style="margin-top:15px;">
+          {% if item.video %}
+            <div class="ayas-video" style="margin-top:15px;">
               <video width="280" height="180" controls>
-                <source src="{{ etkinlik.video.url }}" type="video/mp4">
+                <source src="{{ item.video.url }}" type="video/mp4">
                 Tarayıcınız video etiketini desteklemiyor.
               </video>
             </div>
@@ -337,21 +337,11 @@
       </div>
     {% empty %}
       <div class="empty-state">
-        <h3>Henüz etkinlik eklenmemiş</h3>
-        <p>Yakında düzenlenecek etkinlikler burada görüntülenecektir.</p>
+        <h3>Henüz içerik eklenmemiş</h3>
       </div>
     {% endfor %}
   </section>
-  <!--
-  <section class="iletisim">
-      <div class="iletisim-content">
-        <h2>İletişim</h2>
-        <p>📧 ozansardogan379@gmail.com</p>
-        <p>📞 +90 555 123 4567</p>
-        <p>📍 Menekşe 2 Sokak No:18/10 Kızılay, Ankara, Türkiye</p>
-      </div>
-    </section>
--->
+  
 
 </body>
 </html>
