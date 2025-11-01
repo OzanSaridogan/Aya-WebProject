@@ -50,11 +50,22 @@ def anasayfa(request):
     return render(request, 'anasayfa2.html')
 
 def ayas_tarihi(request):
-    # Return Ayaş tarihi entries ordered by 'sira' then newest
-    ayas_tarihi = AyasTarihi.objects.order_by('sira', '-tarih')
-
+    # Return Ayaş tarihi entries grouped by category
+    ayas_tarihi_all = AyasTarihi.objects.all().order_by('kategori', 'sira', '-tarih')
+    
+    # Group by category
+    kategoriler = {
+        'genel': [],
+        'sahsiyetler': [],
+        'hikayeler': [],
+        'gelenekler': []
+    }
+    
+    for item in ayas_tarihi_all:
+        kategoriler[item.kategori].append(item)
+    
     return render(request, 'Ayas_tarihi.html', {
-        'ayas_tarihi': ayas_tarihi,
+        'kategoriler': kategoriler,
     })
 
 def gezilecek_yerler_view(request):
@@ -81,16 +92,40 @@ def iletisim(request):
 
 
 def guncel_haberler(request):
-    """Render the 'Guncel_Haberler.html' template with active news items."""
-    # Only show active news items, newest first
-    ayastan_haberler = AyastanHaber.objects.filter(aktif=True).order_by('-tarih')
-    return render(request, 'Guncel_Haberler.html', {'ayastan_haberler': ayastan_haberler})
+    """Render the 'Guncel_Haberler.html' template with active news items grouped by category."""
+    # Only show active news items
+    haberler_all = AyastanHaber.objects.filter(aktif=True).order_by('kategori', 'sira', '-tarih')
+    
+    # Group by category
+    kategoriler = {
+        'genel': [],
+        'mulakat': [],
+        'gezelim': [],
+        'siir': [],
+        'yazi': [],
+        'fotograf': []
+    }
+    
+    for item in haberler_all:
+        kategoriler[item.kategori].append(item)
+    
+    return render(request, 'Guncel_Haberler.html', {'kategoriler': kategoriler})
 
 
 def diger_view(request):
     """Render the 'Diger.html' template using DigerBilgi as the source."""
-    faydali_bilgiler = DigerBilgi.objects.all().order_by('sira', '-tarih')
-    return render(request, 'Diger.html', {'Diger': faydali_bilgiler})
+    diger_bilgiler_all = DigerBilgi.objects.all().order_by('kategori', 'sira', '-tarih')
+    
+    # Group by category
+    kategoriler = {
+        'yemek': [],
+        'dergi': []
+    }
+    
+    for item in diger_bilgiler_all:
+        kategoriler[item.kategori].append(item)
+    
+    return render(request, 'Diger.html', {'kategoriler': kategoriler})
 
 
 

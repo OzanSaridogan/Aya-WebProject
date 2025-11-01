@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-t_n#1o9wse(lys7gk2zo!&6foem+x*#vwmx1g$p-z&x1_nb%q@
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['207.154.215.181', '127.0.0.1', 'localhost', 'www.ayasvakfi.com', 'ayasvakfi.com']
 
@@ -88,7 +88,11 @@ WSGI_APPLICATION = 'AyasWebProject.wsgi.application'
 # En üste ekleyin
 # import sys  (already imported above)
 
-# Yerel test için SQLite kullan
+# Veritabanı yapılandırması
+# Yerel geliştirmede (DEBUG=True) SQLite kullan; PROD'da DATABASE_URL veya ortam değişkenleriyle Postgres kullan
+
+
+    # Prod fakat DATABASE_URL yoksa: ortam değişkenleri ile Postgres
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

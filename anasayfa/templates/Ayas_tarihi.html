@@ -131,6 +131,31 @@
       gap: 30px;
     }
 
+    /* Category Section */
+    .kategori-bolumu {
+      margin-bottom: 50px;
+    }
+
+    .kategori-baslik {
+      font-size: clamp(24px, 5vw, 32px);
+      font-weight: 700;
+      color: #374270;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid #74bdde;
+      position: relative;
+    }
+
+    .kategori-baslik::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 80px;
+      height: 3px;
+      background: #374270;
+    }
+
     .etkinlik-karti {
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
@@ -312,21 +337,27 @@
   </nav>
 
   <!-- Events List Section -->
-  <section class="ayas-tarihi">
-    {% for item in ayas_tarihi %}
-      <div class="ayas-tarihi-karti">
-        <div class="ayas-content">
-          <div class="ayas-metni">
-            <h2>{{ item.baslik }}</h2>
-            <p>{{ item.aciklama }}</p>
-          </div>
-          {% if item.resim %}
-            <div class="ayas-resmi">
-              <img src="{{ item.resim.url }}" alt="{{ item.baslik }}">
+  <section class="etkinlikler-listesi">
+    
+    <!-- Genel Ayaş Tarihi -->
+    {% if kategoriler.genel %}
+    <div class="kategori-bolumu">
+      <h2 class="kategori-baslik">Genel Ayaş Tarihi</h2>
+      {% for item in kategoriler.genel %}
+        <div class="etkinlik-karti">
+          <div class="etkinlik-content">
+            <div class="etkinlik-metni">
+              <h2>{{ item.baslik }}</h2>
+              <p>{{ item.aciklama }}</p>
             </div>
-          {% endif %}
+            {% if item.resim %}
+              <div class="etkinlik-resmi">
+                <img src="{{ item.resim.url }}" alt="{{ item.baslik }}">
+              </div>
+            {% endif %}
+          </div>
           {% if item.video %}
-            <div class="ayas-video" style="margin-top:15px;">
+            <div class="etkinlik-video" style="margin-top:15px;">
               <video width="280" height="180" controls>
                 <source src="{{ item.video.url }}" type="video/mp4">
                 Tarayıcınız video etiketini desteklemiyor.
@@ -334,12 +365,108 @@
             </div>
           {% endif %}
         </div>
-      </div>
-    {% empty %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- İz Bırakan Şahsiyetler -->
+    {% if kategoriler.sahsiyetler %}
+    <div class="kategori-bolumu">
+      <h2 class="kategori-baslik">İz Bırakan Şahsiyetler</h2>
+      {% for item in kategoriler.sahsiyetler %}
+        <div class="etkinlik-karti">
+          <div class="etkinlik-content">
+            <div class="etkinlik-metni">
+              <h2>{{ item.baslik }}</h2>
+              <p>{{ item.aciklama }}</p>
+            </div>
+            {% if item.resim %}
+              <div class="etkinlik-resmi">
+                <img src="{{ item.resim.url }}" alt="{{ item.baslik }}">
+              </div>
+            {% endif %}
+          </div>
+          {% if item.video %}
+            <div class="etkinlik-video" style="margin-top:15px;">
+              <video width="280" height="180" controls>
+                <source src="{{ item.video.url }}" type="video/mp4">
+                Tarayıcınız video etiketini desteklemiyor.
+              </video>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Hikayeler -->
+    {% if kategoriler.hikayeler %}
+    <div class="kategori-bolumu">
+      <h2 class="kategori-baslik">Hikayeler</h2>
+      {% for item in kategoriler.hikayeler %}
+        <div class="etkinlik-karti">
+          <div class="etkinlik-content">
+            <div class="etkinlik-metni">
+              <h2>{{ item.baslik }}</h2>
+              <p>{{ item.aciklama }}</p>
+            </div>
+            {% if item.resim %}
+              <div class="etkinlik-resmi">
+                <img src="{{ item.resim.url }}" alt="{{ item.baslik }}">
+              </div>
+            {% endif %}
+          </div>
+          {% if item.video %}
+            <div class="etkinlik-video" style="margin-top:15px;">
+              <video width="280" height="180" controls>
+                <source src="{{ item.video.url }}" type="video/mp4">
+                Tarayıcınız video etiketini desteklemiyor.
+              </video>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Gelenekler -->
+    {% if kategoriler.gelenekler %}
+    <div class="kategori-bolumu">
+      <h2 class="kategori-baslik">Gelenekler</h2>
+      {% for item in kategoriler.gelenekler %}
+        <div class="etkinlik-karti">
+          <div class="etkinlik-content">
+            <div class="etkinlik-metni">
+              <h2>{{ item.baslik }}</h2>
+              <p>{{ item.aciklama }}</p>
+            </div>
+            {% if item.resim %}
+              <div class="etkinlik-resmi">
+                <img src="{{ item.resim.url }}" alt="{{ item.baslik }}">
+              </div>
+            {% endif %}
+          </div>
+          {% if item.video %}
+            <div class="etkinlik-video" style="margin-top:15px;">
+              <video width="280" height="180" controls>
+                <source src="{{ item.video.url }}" type="video/mp4">
+                Tarayıcınız video etiketini desteklemiyor.
+              </video>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Empty state if no content exists -->
+    {% if not kategoriler.genel and not kategoriler.sahsiyetler and not kategoriler.hikayeler and not kategoriler.gelenekler %}
       <div class="empty-state">
         <h3>Henüz içerik eklenmemiş</h3>
+        <p>Yönetim panelinden içerik ekleyebilirsiniz.</p>
       </div>
-    {% endfor %}
+    {% endif %}
+
   </section>
   
 

@@ -19,6 +19,20 @@ class AyasBilgi(models.Model):
 
 # New Models for Subheaders
 class AyasTarihi(models.Model):
+    KATEGORI_SECENEKLERI = [
+        ('genel', 'Genel Ayaş Tarihi'),
+        ('sahsiyetler', 'İz Bırakan Şahsiyetler'),
+        ('hikayeler', 'Hikayeler'),
+        ('gelenekler', 'Gelenekler'),
+    ]
+    
+    kategori = models.CharField(
+        "Kategori", 
+        max_length=20, 
+        choices=KATEGORI_SECENEKLERI, 
+        default='genel',
+        help_text="İçeriğin ait olduğu kategori"
+    )
     baslik = models.CharField("Başlık", max_length=200)
     aciklama = models.TextField("Açıklama")
     resim = models.ImageField("Görsel", upload_to='ayas_tarihi/', blank=True, null=True)
@@ -29,10 +43,10 @@ class AyasTarihi(models.Model):
     class Meta:
         verbose_name = "Ayaş Tarihi"
         verbose_name_plural = "Ayaş Tarihi"
-        ordering = ['sira', '-tarih']
+        ordering = ['kategori', 'sira', '-tarih']
 
     def __str__(self):
-        return self.baslik
+        return f"{self.get_kategori_display()} - {self.baslik}"
 
 
 class GezilecekYer(models.Model):
@@ -73,6 +87,22 @@ class AyasKoyu(models.Model):
 
 
 class AyastanHaber(models.Model):
+    KATEGORI_SECENEKLERI = [
+        ('genel', 'Genel'),
+        ('mulakat', 'Ayaşlılar ile Mülakat'),
+        ('gezelim', 'Gezelim Görelim Faaliyetleri'),
+        ('siir', 'Şiirler'),
+        ('yazi', 'Yazılar'),
+        ('fotograf', 'Fotoğraflar'),
+    ]
+    
+    kategori = models.CharField(
+        "Kategori", 
+        max_length=20, 
+        choices=KATEGORI_SECENEKLERI, 
+        default='genel',
+        help_text="Haberin ait olduğu kategori"
+    )
     baslik = models.CharField("Haber Başlığı", max_length=200)
     aciklama = models.TextField("Haber İçeriği")
     resim = models.ImageField("Haber Görseli", upload_to='ayas_haberler/', blank=True, null=True)
@@ -80,33 +110,46 @@ class AyastanHaber(models.Model):
     tarih = models.DateField("Haber Tarihi")
     yayinlanma_tarihi = models.DateTimeField("Yayınlanma Tarihi", auto_now_add=True)
     aktif = models.BooleanField("Aktif", default=True, help_text="Haberi göster/gizle")
+    sira = models.IntegerField("Sıra", default=0, help_text="Gösterim sırası (küçükten büyüğe)")
 
     class Meta:
         verbose_name = "Ayaş'tan Haber"
         verbose_name_plural = "Ayaş'tan Haberler"
-        ordering = ['-tarih', '-yayinlanma_tarihi']
+        ordering = ['kategori', 'sira', '-tarih', '-yayinlanma_tarihi']
 
     def __str__(self):
-        return self.baslik
+        return f"{self.get_kategori_display()} - {self.baslik}"
 
 
 class DigerBilgi(models.Model):
+    KATEGORI_SECENEKLERI = [
+        ('yemek', 'Ayaşa ait Yemek Tarifleri'),
+        ('dergi', 'Ayaş Dergileri'),
+    ]
+    
+    kategori = models.CharField(
+        "Kategori", 
+        max_length=20, 
+        choices=KATEGORI_SECENEKLERI, 
+        default='yemek',
+        help_text="İçeriğin ait olduğu kategori"
+    )
     baslik = models.CharField("Başlık", max_length=200)
     aciklama = models.TextField("Açıklama")
     resim = models.ImageField("Görsel", upload_to='diger_bilgiler/', blank=True, null=True)
     video = models.FileField("Video", upload_to='diger_bilgiler/videos/', blank=True, null=True)
-    kategori = models.CharField("Kategori", max_length=100, blank=True, null=True, 
-                                help_text="Örn: Kültür, Ekonomi, Ulaşım")
+    pdf_dosya = models.FileField("PDF Dosyası", upload_to='diger_bilgiler/pdf/', blank=True, null=True, 
+                                 help_text="Dergi için PDF dosyası (sadece Ayaş Dergileri kategorisi için)")
     tarih = models.DateField("Tarih", auto_now_add=True)
     sira = models.IntegerField("Sıra", default=0, help_text="Gösterim sırası (küçükten büyüğe)")
 
     class Meta:
         verbose_name = "Diğer Bilgi"
         verbose_name_plural = "Diğer Bilgiler"
-        ordering = ['sira', '-tarih']
+        ordering = ['kategori', 'sira', '-tarih']
 
     def __str__(self):
-        return self.baslik
+        return f"{self.get_kategori_display()} - {self.baslik}"
 
 
 

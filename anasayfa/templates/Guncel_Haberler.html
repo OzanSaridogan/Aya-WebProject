@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Güncel Haberler</title>
+  {% load static %}
   <style>
     * {
       margin: 0;
@@ -53,26 +54,26 @@
     }
 
     /* Modern Header with Gradient */
-    .ayas-banner {
+    .bilgiler-banner {
       background: linear-gradient(135deg, #374270 0%, #74bdde 100%);
       position: relative;
-      padding: 80px 20px 40px;
+      padding: 80px 20px 60px;
       text-align: center;
       overflow: hidden;
     }
 
-    .ayas-banner::before {
+    .bilgiler-banner::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="white" opacity="0.08"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.12"/><circle cx="90" cy="90" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="15" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="70" cy="45" r="1" fill="white" opacity="0.08"/><circle cx="30" cy="75" r="1" fill="white" opacity="0.12"/><circle cx="85" cy="85" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
       pointer-events: none;
     }
 
-    .ayas-banner h1 {
+    .bilgiler-banner h1 {
       color: white;
       font-size: clamp(28px, 6vw, 48px);
       font-weight: 700;
@@ -88,63 +89,6 @@
       font-weight: 400;
       position: relative;
       z-index: 1;
-      margin-bottom: 30px;
-    }
-
-    /* Section Navigation Menu */
-    .section-nav {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 20px;
-      margin: -40px auto 40px;
-      max-width: 1200px;
-      position: relative;
-      z-index: 2;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .section-nav-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: #74bdde;
-      margin-bottom: 15px;
-      text-align: center;
-    }
-
-    .section-nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-    }
-
-    .section-nav-links a {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(135deg, #2e617759 0%, #74bdde 100%);
-      color: white;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 10px rgba(55, 66, 112, 0.2);
-    }
-
-    .section-nav-links a:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(55, 66, 112, 0.3);
-      background: linear-gradient(135deg, #5a6fa8 0%, #74bdde 100%);
-    }
-
-    .section-nav-links a svg {
-      width: 16px;
-      height: 16px;
-      flex-shrink: 0;
     }
 
     /* Decorative elements */
@@ -176,54 +120,42 @@
       50% { transform: translateY(-20px); }
     }
 
-    /* Main Container */
-    .ayas-container {
+    /* Information List Section */
+    .bilgiler-listesi {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 20px;
-    }
-
-    /* Section Header */
-    .section-header {
-      background: linear-gradient(135deg, #374270 0%, #74bdde 100%);
-      border-radius: 15px;
-      padding: 30px;
-      margin: 40px 0 30px;
-      text-align: center;
-      box-shadow: 0 8px 30px rgba(55, 66, 112, 0.2);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .section-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
-      pointer-events: none;
-    }
-
-    .section-header h2 {
-      color: white;
-      font-size: clamp(24px, 5vw, 36px);
-      font-weight: 700;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Content Cards */
-    .content-grid {
+      padding: 60px 20px;
       display: flex;
       flex-direction: column;
       gap: 30px;
-      margin-bottom: 40px;
     }
 
-    .content-card {
+    /* Category Section */
+    .kategori-bolumu {
+      margin-bottom: 50px;
+    }
+
+    .kategori-baslik {
+      font-size: clamp(24px, 5vw, 32px);
+      font-weight: 700;
+      color: #374270;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid #74bdde;
+      position: relative;
+    }
+
+    .kategori-baslik::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 80px;
+      height: 3px;
+      background: #374270;
+    }
+
+    .bilgi-karti {
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       border-radius: 20px;
@@ -235,7 +167,7 @@
       overflow: hidden;
     }
 
-    .content-card::before {
+    .bilgi-karti::before {
       content: '';
       position: absolute;
       top: 0;
@@ -245,22 +177,22 @@
       background: linear-gradient(135deg, #374270 0%, #74bdde 100%);
     }
 
-    .content-card:hover {
+    .bilgi-karti:hover {
       transform: translateY(-5px);
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
     }
 
-    .content-wrapper {
+    .bilgi-content {
       display: flex;
       gap: 30px;
       align-items: flex-start;
     }
 
-    .content-text {
+    .bilgi-metni {
       flex: 1;
     }
 
-    .content-text h3 {
+    .bilgi-metni h2 {
       font-size: clamp(20px, 4vw, 26px);
       font-weight: 600;
       color: #2d3748;
@@ -268,35 +200,19 @@
       line-height: 1.3;
     }
 
-    .content-text p {
+    .bilgi-metni p {
       font-size: 16px;
       line-height: 1.7;
       color: #4a5568;
       text-align: justify;
-      margin-bottom: 15px;
     }
 
-    .content-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 15px;
-    }
-
-    .meta-tag {
-      font-size: 14px;
-      color: #718096;
-      background: rgba(102, 126, 234, 0.1);
-      padding: 5px 12px;
-      border-radius: 15px;
-      display: inline-block;
-    }
-
-    .content-media {
+    .bilgi-resmi {
       flex-shrink: 0;
+      position: relative;
     }
 
-    .content-media img {
+    .bilgi-resmi img {
       width: 280px;
       height: 180px;
       object-fit: cover;
@@ -305,55 +221,27 @@
       transition: transform 0.3s ease;
     }
 
-    .content-card:hover .content-media img {
+    .bilgi-karti:hover .bilgi-resmi img {
       transform: scale(1.02);
-    }
-
-    .content-media video {
-      width: 280px;
-      height: 180px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
     /* Empty state */
     .empty-state {
       text-align: center;
-      padding: 60px 20px;
+      padding: 80px 20px;
       color: #718096;
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: 15px;
-      margin: 20px 0;
     }
 
     .empty-state h3 {
-      font-size: 20px;
+      font-size: 24px;
       margin-bottom: 10px;
       color: #4a5568;
     }
 
-    .empty-state p {
-      font-size: 16px;
-    }
-
     /* Mobile Responsive */
     @media (max-width: 768px) {
-      .ayas-banner {
-        padding: 60px 20px 30px;
-      }
-
-      .section-nav {
-        margin: -30px 15px 30px;
-        padding: 15px;
-      }
-
-      .section-nav-links {
-        gap: 8px;
-      }
-
-      .section-nav-links a {
-        font-size: 13px;
-        padding: 8px 15px;
+      .bilgiler-banner {
+        padding: 60px 20px 40px;
       }
 
       .banner-decoration {
@@ -368,52 +256,43 @@
         height: 40px;
       }
 
-      .ayas-container {
-        padding: 15px;
+      .bilgiler-listesi {
+        padding: 40px 15px;
+        gap: 25px;
       }
 
-      .section-header {
-        padding: 20px;
-        margin: 30px 0 20px;
+      .bilgi-karti {
+        padding: 25px 20px;
       }
 
-      .content-grid {
-        gap: 20px;
-      }
-
-      .content-card {
-        padding: 20px;
-      }
-
-      .content-wrapper {
+      .bilgi-content {
         flex-direction: column;
         gap: 20px;
       }
 
-      .content-media {
+      .bilgi-resmi {
         align-self: center;
       }
 
-      .content-media img,
-      .content-media video {
+      .bilgi-resmi img {
         width: 100%;
         max-width: 350px;
         height: 200px;
       }
 
-      .content-text h3 {
+      .bilgi-metni h2 {
         text-align: center;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
       }
     }
 
     @media (max-width: 480px) {
-      .content-card {
-        padding: 15px;
+      .bilgi-karti {
+        padding: 20px 15px;
+        margin: 0 5px;
       }
 
-      .content-media img,
-      .content-media video {
+      .bilgi-resmi img {
         height: 160px;
       }
     }
@@ -424,7 +303,7 @@
     }
 
     /* Loading animation for images */
-    .content-media img {
+    .bilgi-resmi img {
       opacity: 0;
       animation: fadeInImage 0.6s ease forwards;
     }
@@ -433,11 +312,6 @@
       to {
         opacity: 1;
       }
-    }
-
-    /* Scroll padding for anchor links */
-    section {
-      scroll-margin-top: 20px;
     }
   </style>
 </head>
@@ -455,44 +329,205 @@
   </nav>
 
   <!-- Modern Banner Section -->
-  <section class="ayas-banner">
+  <section class="bilgiler-banner">
     <div class="banner-decoration"></div>
     <h1>Güncel Haberler</h1>
-    <p class="banner-subtitle">Ayaş'tan Son Haberler</p>
+    <p class="banner-subtitle">Ayaş'tan Son Haberler ve Güncel Gelişmeler</p>
   </section>
 
  
 
-  <!-- Main Container -->
+  <!-- Information List Section -->
   <section class="bilgiler-listesi">
-    {% for bilgi in AyastanHaber %}
-      <div class="bilgi-karti">
-        <div class="bilgi-content">
-          <div class="bilgi-metni">
-            <h2>{{ bilgi.baslik }}</h2>
-            <p>{{ bilgi.aciklama }}</p>
-          </div>
-          {% if bilgi.resim %}
-            <div class="bilgi-resmi">
-              <img src="{{ bilgi.resim.url }}" alt="{{ bilgi.baslik }}">
+    
+    <!-- Genel -->
+    {% if kategoriler.genel %}
+    <div class="kategori-bolumu">
+      <h2 class="kategori-baslik">Genel</h2>
+      {% for haber in kategoriler.genel %}
+        <div class="bilgi-karti">
+          <div class="bilgi-content">
+            <div class="bilgi-metni">
+              <h2>{{ haber.baslik }}</h2>
+              <p>{{ haber.aciklama }}</p>
             </div>
-          {% endif %}
-          {% if bilgi.video %}
-            <div class="bilgi-resmi" style="margin-top:15px;">
+            {% if haber.resim %}
+              <div class="bilgi-resmi">
+                <img src="{{ haber.resim.url }}" alt="{{ haber.baslik }}">
+              </div>
+            {% endif %}
+          </div>
+          {% if haber.video %}
+            <div class="bilgi-video" style="margin-top:15px;">
               <video width="280" height="180" controls>
-                <source src="{{ bilgi.video.url }}" type="video/mp4">
+                <source src="{{ haber.video.url }}" type="video/mp4">
                 Tarayıcınız video etiketini desteklemiyor.
               </video>
             </div>
           {% endif %}
         </div>
-      </div>
-    {% empty %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Ayaşlılar ile Mülakat -->
+    {% if kategoriler.mulakat %}
+    <div class="kategori-bolumu">
+      <h2 class="kategori-baslik">Ayaşlılar ile Mülakat</h2>
+      {% for haber in kategoriler.mulakat %}
+        <div class="bilgi-karti">
+          <div class="bilgi-content">
+            <div class="bilgi-metni">
+              <h2>{{ haber.baslik }}</h2>
+              <p>{{ haber.aciklama }}</p>
+            </div>
+            {% if haber.resim %}
+              <div class="bilgi-resmi">
+                <img src="{{ haber.resim.url }}" alt="{{ haber.baslik }}">
+              </div>
+            {% endif %}
+          </div>
+          {% if haber.video %}
+            <div class="bilgi-video" style="margin-top:15px;">
+              <video width="280" height="180" controls>
+                <source src="{{ haber.video.url }}" type="video/mp4">
+                Tarayıcınız video etiketini desteklemiyor.
+              </video>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Gezelim Görelim Faaliyetleri -->
+    {% if kategoriler.gezelim %}
+    <div class="kategori-bolumu">
+      <h2 class="kategori-baslik">Gezelim Görelim Faaliyetleri</h2>
+      {% for haber in kategoriler.gezelim %}
+        <div class="bilgi-karti">
+          <div class="bilgi-content">
+            <div class="bilgi-metni">
+              <h2>{{ haber.baslik }}</h2>
+              <p>{{ haber.aciklama }}</p>
+            </div>
+            {% if haber.resim %}
+              <div class="bilgi-resmi">
+                <img src="{{ haber.resim.url }}" alt="{{ haber.baslik }}">
+              </div>
+            {% endif %}
+          </div>
+          {% if haber.video %}
+            <div class="bilgi-video" style="margin-top:15px;">
+              <video width="280" height="180" controls>
+                <source src="{{ haber.video.url }}" type="video/mp4">
+                Tarayıcınız video etiketini desteklemiyor.
+              </video>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Şiirler -->
+    {% if kategoriler.siir %}
+    <div class="kategori-bolumu">
+      <h2 class="kategori-baslik">Şiirler</h2>
+      {% for haber in kategoriler.siir %}
+        <div class="bilgi-karti">
+          <div class="bilgi-content">
+            <div class="bilgi-metni">
+              <h2>{{ haber.baslik }}</h2>
+              <p style="white-space: pre-line;">{{ haber.aciklama }}</p>
+            </div>
+            {% if haber.resim %}
+              <div class="bilgi-resmi">
+                <img src="{{ haber.resim.url }}" alt="{{ haber.baslik }}">
+              </div>
+            {% endif %}
+          </div>
+          {% if haber.video %}
+            <div class="bilgi-video" style="margin-top:15px;">
+              <video width="280" height="180" controls>
+                <source src="{{ haber.video.url }}" type="video/mp4">
+                Tarayıcınız video etiketini desteklemiyor.
+              </video>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Yazılar -->
+    {% if kategoriler.yazi %}
+    <div class="kategori-bolumu">
+      <h2 class="kategori-baslik">Yazılar</h2>
+      {% for haber in kategoriler.yazi %}
+        <div class="bilgi-karti">
+          <div class="bilgi-content">
+            <div class="bilgi-metni">
+              <h2>{{ haber.baslik }}</h2>
+              <p>{{ haber.aciklama }}</p>
+            </div>
+            {% if haber.resim %}
+              <div class="bilgi-resmi">
+                <img src="{{ haber.resim.url }}" alt="{{ haber.baslik }}">
+              </div>
+            {% endif %}
+          </div>
+          {% if haber.video %}
+            <div class="bilgi-video" style="margin-top:15px;">
+              <video width="280" height="180" controls>
+                <source src="{{ haber.video.url }}" type="video/mp4">
+                Tarayıcınız video etiketini desteklemiyor.
+              </video>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Fotoğraflar -->
+    {% if kategoriler.fotograf %}
+    <div class="kategori-bolumu">
+      <h2 class="kategori-baslik">Fotoğraflar</h2>
+      {% for haber in kategoriler.fotograf %}
+        <div class="bilgi-karti">
+          <div class="bilgi-content">
+            <div class="bilgi-metni">
+              <h2>{{ haber.baslik }}</h2>
+              <p>{{ haber.aciklama }}</p>
+            </div>
+            {% if haber.resim %}
+              <div class="bilgi-resmi">
+                <img src="{{ haber.resim.url }}" alt="{{ haber.baslik }}">
+              </div>
+            {% endif %}
+          </div>
+          {% if haber.video %}
+            <div class="bilgi-video" style="margin-top:15px;">
+              <video width="280" height="180" controls>
+                <source src="{{ haber.video.url }}" type="video/mp4">
+                Tarayıcınız video etiketini desteklemiyor.
+              </video>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Empty state if no content exists -->
+    {% if not kategoriler.genel and not kategoriler.mulakat and not kategoriler.gezelim and not kategoriler.siir and not kategoriler.yazi and not kategoriler.fotograf %}
       <div class="empty-state">
-        <h3>Henüz bilgi eklenmemiş</h3>
-        <p>Yakında içerik eklenecektir</p>
+        <h3>Henüz haber eklenmemiş</h3>
+        <p>Yönetim panelinden içerik ekleyebilirsiniz.</p>
       </div>
-    {% endfor %}
+    {% endif %}
+
   </section>
 
 </body>

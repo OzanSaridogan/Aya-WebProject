@@ -11,10 +11,11 @@ from .models import (
 
 @admin.register(AyasTarihi)
 class AyasTarihiAdmin(admin.ModelAdmin):
-	list_display = ('baslik', 'sira', 'tarih')
+	list_display = ('baslik', 'kategori', 'sira', 'tarih')
 	list_editable = ('sira',)
+	list_filter = ('kategori',)
 	search_fields = ('baslik', 'aciklama')
-	ordering = ('sira', '-tarih')
+	ordering = ('kategori', 'sira', '-tarih')
 
 
 @admin.register(GezilecekYer)
@@ -34,18 +35,20 @@ class AyasKoyuAdmin(admin.ModelAdmin):
 
 @admin.register(AyastanHaber)
 class AyastanHaberAdmin(admin.ModelAdmin):
-	list_display = ('baslik', 'tarih', 'yayinlanma_tarihi', 'aktif')
-	list_filter = ('aktif',)
+	list_display = ('baslik', 'kategori', 'sira', 'tarih', 'yayinlanma_tarihi', 'aktif')
+	list_editable = ('sira', 'aktif')
+	list_filter = ('aktif', 'kategori')
 	search_fields = ('baslik', 'aciklama')
-	ordering = ('-tarih', '-yayinlanma_tarihi')
+	ordering = ('kategori', 'sira', '-tarih', '-yayinlanma_tarihi')
 
 
 @admin.register(DigerBilgi)
 class DigerBilgiAdmin(admin.ModelAdmin):
 	list_display = ('baslik', 'kategori', 'sira', 'tarih')
+	list_editable = ('sira',)
 	list_filter = ('kategori',)
-	search_fields = ('baslik', 'aciklama', 'kategori')
-	ordering = ('sira', '-tarih')
+	search_fields = ('baslik', 'aciklama')
+	ordering = ('kategori', 'sira', '-tarih')
 
 
 admin.site.register(AyasBilgi)
