@@ -80,7 +80,7 @@ def ayas(request):
     context = {'ayas_bilgiler': ayas_bilgiler}
     
     # TODO: Create a proper template for AyasBilgi or remove this view if not needed
-    return render(request, 'ayas_bilgileri.html', context)
+    return render(request, 'Guncel_Haberler.html', context)
 
 def koyler(request):
     # Import models here to avoid circular import issues at module import time
