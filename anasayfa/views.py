@@ -73,11 +73,14 @@ def gezilecek_yerler_view(request):
     return render(request, 'Gezilecek_yerler.html', {'gezilecek_yerler': gezilecek_yerler})
 
 def ayas(request):
-    # Import models here to avoid circular import issues at module import time
+    # Ayaş Bilgileri view - should use its own template, not Guncel_Haberler
+    # This function appears to be unused or misconfigured
+    # If you need Ayaş Bilgileri, create a separate template for it
     ayas_bilgiler = AyasBilgi.objects.all().order_by('-tarih')
     context = {'ayas_bilgiler': ayas_bilgiler}
-
-    return render(request, 'Guncel_Haberler.html', context)
+    
+    # TODO: Create a proper template for AyasBilgi or remove this view if not needed
+    return render(request, 'ayas_bilgileri.html', context)
 
 def koyler(request):
     # Import models here to avoid circular import issues at module import time
